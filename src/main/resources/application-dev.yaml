@@ -1,0 +1,15 @@
+# Setup mysql database config
+spring:
+  datasource:
+    username: postgres
+    password: root
+    url: jdbc:postgresql://${SPRING_DATASOURCE:localhost}:5432/cursinho
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
