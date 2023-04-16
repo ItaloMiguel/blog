@@ -1,4 +1,4 @@
-# Setup mysql database config
+# Setup postgres database config
 spring:
   datasource:
     username: postgres

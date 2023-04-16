@@ -1,6 +1,6 @@
 RUN_DOCKERFILE = bash dockerfile/
 
-start-dev: build
+start-dev:
 	@bash utils/run-dev.sh
 
 start-prod:
@@ -27,6 +27,6 @@ help:
 	@echo "	chmod	 	Will give execute permission for .sh. Theses files are inside utils/ folder"
 	@echo "	stop		Stop all docker-compose. Be careful."
 	@echo "	start-dev 	Start project with profile dev."
-	@echo "	build 		Build all dockerfile (nginx, spring-boot)"
+	@echo "	build 		Build all dockerfile (nginx, spring-boot)... Don't working, sorry."
 	@echo ""
 	@echo "Thanks for running the project, I appreciate it, hope to see you again :)"
