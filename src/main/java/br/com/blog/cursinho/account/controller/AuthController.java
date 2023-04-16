@@ -38,7 +38,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public ModelAndView sendRegisterView(@ModelAttribute @Valid AccountRequestDTO accountDto, BindingResult bindingResult) {
-        if (!bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             return new ModelAndView("auth/register");
         }
 
