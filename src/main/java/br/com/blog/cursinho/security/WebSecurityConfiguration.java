@@ -29,17 +29,14 @@ public class WebSecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests(auth -> auth
-                        .requestMatchers("/").permitAll()
-                        .requestMatchers("/register").permitAll()
-                        .anyRequest().authenticated()
-                )
+                .authorizeHttpRequests()
+                .requestMatchers(WHITELIST).permitAll()
+                .anyRequest().authenticated()
+                .and()
                 .formLogin()
                 .loginPage("/login")
-                .loginProcessingUrl("/login")
-                .usernameParameter("email").passwordParameter("password")
-                .defaultSuccessUrl("/", true).failureUrl("/login?error")
-                .permitAll()
+                .usernameParameter("email")
+                .defaultSuccessUrl("/", true).failureUrl("/login?error").permitAll()
                 .and()
                 .logout().logoutUrl("/logout").logoutSuccessUrl("/login?logout")
                 .and()

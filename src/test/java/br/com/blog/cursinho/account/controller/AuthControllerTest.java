@@ -1,21 +1,16 @@
 package br.com.blog.cursinho.account.controller;
 
-import br.com.blog.cursinho.account.dto.AccountRequestDTO;
+import br.com.blog.cursinho.account.dto.AccountRegisterRequestDTO;
 import br.com.blog.cursinho.account.service.RegisterAccountService;
+import br.com.blog.cursinho.account.service.impl.CheckRegisterParameters;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MockMvcBuilder;
-import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.servlet.FlashMap;
-import org.springframework.web.servlet.ModelAndView;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -31,9 +26,12 @@ class AuthControllerTest {
     @InjectMocks
     private RegisterAccountService accountService;
 
+    @InjectMocks
+    private CheckRegisterParameters checkRegisterParameters;
+
     @BeforeEach
     void beforeEach() {
-        authController = new AuthController(accountService);
+        authController = new AuthController(accountService, checkRegisterParameters, userDetailsService);
         mockMvc = MockMvcBuilders.standaloneSetup(authController).build();
     }
 
@@ -65,7 +63,7 @@ class AuthControllerTest {
 
         this.mockMvc.perform(
                         post("/register")
-                                .content(String.valueOf(new AccountRequestDTO(
+                                .content(String.valueOf(new AccountRegisterRequestDTO(
                                         "emailcomum@gmail.com",
                                         "password",
                                         "password",
@@ -83,7 +81,7 @@ class AuthControllerTest {
 
         this.mockMvc.perform(
                         post("/register")
-                                .content(String.valueOf(new AccountRequestDTO(
+                                .content(String.valueOf(new AccountRegisterRequestDTO(
                                         null,
                                         "password",
                                         "password",

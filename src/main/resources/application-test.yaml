@@ -1,3 +1,4 @@
+server.port: 8081
 # Setup h2 database config
 spring:
   datasource:

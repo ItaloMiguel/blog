@@ -1,10 +1,8 @@
 package br.com.blog.cursinho.account.domain;
 
+import br.com.blog.cursinho.account.dto.AccountRegisterRequestDTO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -15,6 +13,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Account implements Serializable {
 
     @Id
@@ -34,4 +33,17 @@ public class Account implements Serializable {
             joinColumns = {@JoinColumn(name = "account_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "role_name", referencedColumnName = "name")})
     private Set<Role> roles = new HashSet<>();
+
+    public Account(String firstName, String lastName, String email, String password, Role roleModel) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.roles.add(roleModel);
+    }
+
+
+    public void addRoles(Role roleUser) {
+        this.roles.add(roleUser);
+    }
 }
