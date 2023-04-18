@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <link rel="stylesheet" href="@{/css/header.css}">
 </head>
 <body>
 <header th:fragment="header_html">
     <div class="main-logo">
-        <h1>BLOG</h1>
+        <h1>LITTLE COURSE</h1>
     </div>
     <div>
         <form th:method="GET" th:action="@{/search}" role="search">
@@ -20,7 +22,7 @@
             <form th:action="@{/logout}" method="POST">
                 <ul>
                     <li>
-                        <label><span sec:authentication="name">Username</span></label>
+                        <p>Hi, <span sec:authentication="name">Username</span></p>
                     </li>
                     <li>
                         <button>Logout</button>

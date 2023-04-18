@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <link rel="stylesheet" href="@{/auth/login.css}">
 </head>
 <body>
-<h1>Hello LoginController</h1>
-<p><a th:href="@{/}">Go to Home</a></p>
-<p><a th:href="@{/register}">Go to Register</a></p>
 <section>
         <h2>Login</h2>
         <form th:action="@{/login}" method="POST">
