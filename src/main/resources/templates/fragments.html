@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header th:fragment="header_html">
+    <div class="main-logo">
+        <h1>BLOG</h1>
+    </div>
+    <div>
+        <form th:method="GET" th:action="@{/search}" role="search">
+            <input name="search" type="search" placeholder="Search" aria-label="Search">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <div>
+        <div sec:authorize="isAuthenticated()">
+            <form th:action="@{/logout}" method="POST">
+                <ul>
+                    <li>
+                        <label><span sec:authentication="name">Username</span></label>
+                    </li>
+                    <li>
+                        <button>Logout</button>
+                    </li>
+                </ul>
+            </form>
+        </div>
+        <div>
+            <ul>
+                <li><a th:href="@{/login}">Login</a></li>
+                <li><a th:href="@{/signup}">Signup</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+</body>
+</html>

@@ -43,18 +43,7 @@ public class AuthController {
         return modelAndView;
     }
 
-//    @PostMapping("/login")
-//    public ModelAndView sendLoginView(@Valid @ModelAttribute AccountLoginRequestDTO accountDTO, BindingResult bindingResult) {
-//        if (bindingResult.hasErrors()) {
-//            return new ModelAndView("redirect:/login");
-//        }
-//
-//        userDetailsService.loadUserByUsername(accountDTO.getEmail());
-//
-//        return new ModelAndView("redirect:/");
-//    }
-
-    @GetMapping("/register")
+    @GetMapping("/signup")
     public ModelAndView getRegisterView() {
         ModelAndView modelAndView = new ModelAndView("auth/register");
 
@@ -64,7 +53,7 @@ public class AuthController {
         return modelAndView;
     }
 
-    @PostMapping("/register")
+    @PostMapping("/signup")
     public ModelAndView sendRegisterView(@ModelAttribute @Valid AccountRegisterRequestDTO accountDTO, BindingResult bindingResult) {
 
         errorMessages.addAll(checkRegisterParameters.execute(accountDTO, bindingResult));
