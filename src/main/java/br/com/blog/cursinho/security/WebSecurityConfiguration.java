@@ -24,6 +24,7 @@ public class WebSecurityConfiguration {
 
     private static final String[] WHITELIST = {
             "/signup",
+            "/about",
             "/"
     };
 
@@ -31,7 +32,7 @@ public class WebSecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests()
-                .requestMatchers(HttpMethod.POST ,WHITELIST).permitAll()
+                .requestMatchers(WHITELIST).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

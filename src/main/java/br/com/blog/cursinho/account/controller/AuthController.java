@@ -6,6 +6,7 @@ import br.com.blog.cursinho.account.service.RegisterAccountService;
 import br.com.blog.cursinho.account.service.impl.CheckRegisterParameters;
 import br.com.blog.cursinho.account.service.impl.UserDetailsServiceImpl;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -20,6 +21,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping
+@Slf4j
 public class AuthController {
 
     private final List<String> errorMessages = new ArrayList<>();
@@ -34,6 +36,8 @@ public class AuthController {
 
     @GetMapping("/authenticate")
     public ModelAndView geAuthenticateView() {
+        log.info("[GET] Loading authentication view.");
+
         ModelAndView modelAndView = new ModelAndView("auth/authenticate");
 
         AccountRegisterRequestDTO accountRegister = new AccountRegisterRequestDTO();
@@ -44,12 +48,13 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ModelAndView sendRegisterView(@ModelAttribute @Valid AccountRegisterRequestDTO accountDTO, BindingResult bindingResult) {
-
-        System.out.println(accountDTO);
+        log.info("[POST] Receiving registration request.");
 
         errorMessages.addAll(checkRegisterParameters.execute(accountDTO, bindingResult));
 
         if (!errorMessages.isEmpty()) {
+            log.info("Registration request has error");
+
             ModelAndView modelAndView = new ModelAndView("redirect:/authenticate");
 
             modelAndView.addObject("errorMessages", errorMessages);
@@ -57,7 +62,6 @@ public class AuthController {
 
             return modelAndView;
         }
-
         registerAccountService.createAccount(accountDTO);
 
         return new ModelAndView("redirect:/");
