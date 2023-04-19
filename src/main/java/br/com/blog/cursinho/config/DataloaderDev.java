@@ -6,24 +6,22 @@ import br.com.blog.cursinho.account.domain.RoleType;
 import br.com.blog.cursinho.account.repository.AccountRepository;
 import br.com.blog.cursinho.account.repository.RoleRepository;
 import jakarta.transaction.Transactional;
-import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
-@Profile("test")
+@Profile("dev")
 @Configuration
-public class Dataloader {
+public class DataloaderDev {
 
     private final RoleRepository roleRepository;
     private final AccountRepository accountRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public Dataloader(RoleRepository roleRepository, AccountRepository accountRepository, PasswordEncoder passwordEncoder) {
+    public DataloaderDev(RoleRepository roleRepository, AccountRepository accountRepository, PasswordEncoder passwordEncoder) {
         this.roleRepository = roleRepository;
         this.accountRepository = accountRepository;
         this.passwordEncoder = passwordEncoder;
@@ -31,12 +29,11 @@ public class Dataloader {
 
     @Bean
     public void onApplicationEvent() {
-        System.out.println("\n\n+++++++++DATA LOADER RUNNING++++++++++++++++\n\n");
+        System.out.println("\n\n+++++++++ DATA LOADER DEV RUNNING ++++++++++++++++\n\n");
 
         createRoleIfNotExist(RoleType.ROLE_ADMIN.name());
         createRoleIfNotExist(RoleType.ROLE_USER.name());
 
-        this.createNewTestIfNotExist("ROLE_ADMIN");
     }
 
     @Transactional

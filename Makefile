@@ -3,10 +3,14 @@ RUN_DOCKERFILE = bash dockerfile/
 start-dev:
 	@bash utils/run-dev.sh
 
+psql-dev:
+	@bash utils/psql-dev.sh
+
+
 start-prod:
 	@echo "In production... ;)"
 
-build:
+build-dev:
 	@docker build dockerfile/nginx/
 	@docker build dockerfile/web/
 
@@ -27,6 +31,7 @@ help:
 	@echo "	chmod	 	Will give execute permission for .sh. Theses files are inside utils/ folder"
 	@echo "	stop		Stop all docker-compose. Be careful."
 	@echo "	start-dev 	Start project with profile dev."
+	@echo " psql-dev	Connect to postgres. Password: root"
 	@echo "	build 		Build all dockerfile (nginx, spring-boot)... Don't working, sorry."
 	@echo ""
 	@echo "Thanks for running the project, I appreciate it, hope to see you again :)"

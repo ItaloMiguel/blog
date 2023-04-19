@@ -6,6 +6,7 @@ import br.com.blog.cursinho.account.service.RegisterAccountService;
 import br.com.blog.cursinho.account.service.impl.CheckRegisterParameters;
 import br.com.blog.cursinho.account.service.impl.UserDetailsServiceImpl;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
