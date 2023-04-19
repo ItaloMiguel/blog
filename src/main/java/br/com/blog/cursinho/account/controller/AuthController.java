@@ -25,30 +25,18 @@ public class AuthController {
 
     private final RegisterAccountService registerAccountService;
     private final CheckRegisterParameters checkRegisterParameters;
-    private final UserDetailsServiceImpl userDetailsService;
 
-    public AuthController(RegisterAccountService registerAccountService, CheckRegisterParameters checkRegisterParameters, UserDetailsServiceImpl userDetailsService) {
+    public AuthController(RegisterAccountService registerAccountService, CheckRegisterParameters checkRegisterParameters) {
         this.registerAccountService = registerAccountService;
         this.checkRegisterParameters = checkRegisterParameters;
-        this.userDetailsService = userDetailsService;
     }
 
-    @GetMapping("/login")
-    public ModelAndView getLoginView() {
-        ModelAndView modelAndView = new ModelAndView("auth/login");
+    @GetMapping("/authenticate")
+    public ModelAndView geAuthenticateView() {
+        ModelAndView modelAndView = new ModelAndView("auth/authenticate");
 
-        AccountLoginRequestDTO account = new AccountLoginRequestDTO();
-        modelAndView.addObject("account",account);
-
-        return modelAndView;
-    }
-
-    @GetMapping("/signup")
-    public ModelAndView getRegisterView() {
-        ModelAndView modelAndView = new ModelAndView("auth/register");
-
-        AccountRegisterRequestDTO account = new AccountRegisterRequestDTO();
-        modelAndView.addObject("account", account);
+        AccountRegisterRequestDTO accountRegister = new AccountRegisterRequestDTO();
+        modelAndView.addObject("accountRegister", accountRegister);
 
         return modelAndView;
     }
@@ -56,10 +44,12 @@ public class AuthController {
     @PostMapping("/signup")
     public ModelAndView sendRegisterView(@ModelAttribute @Valid AccountRegisterRequestDTO accountDTO, BindingResult bindingResult) {
 
+        System.out.println(accountDTO);
+
         errorMessages.addAll(checkRegisterParameters.execute(accountDTO, bindingResult));
 
         if (!errorMessages.isEmpty()) {
-            ModelAndView modelAndView = new ModelAndView("redirect:/register");
+            ModelAndView modelAndView = new ModelAndView("redirect:/authenticate");
 
             modelAndView.addObject("errorMessages", errorMessages);
             modelAndView.addObject("account", accountDTO);

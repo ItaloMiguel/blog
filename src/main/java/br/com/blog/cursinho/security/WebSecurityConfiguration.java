@@ -2,6 +2,7 @@ package br.com.blog.cursinho.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -22,7 +23,7 @@ public class WebSecurityConfiguration {
     }
 
     private static final String[] WHITELIST = {
-            "/register",
+            "/signup",
             "/"
     };
 
@@ -30,15 +31,15 @@ public class WebSecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests()
-                .requestMatchers(WHITELIST).permitAll()
+                .requestMatchers(HttpMethod.POST ,WHITELIST).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login")
+                .loginPage("/authenticate")
                 .usernameParameter("email")
-                .defaultSuccessUrl("/", true).failureUrl("/login?error").permitAll()
+                .defaultSuccessUrl("/", true).failureUrl("/authenticate?error").permitAll()
                 .and()
-                .logout().logoutUrl("/logout").logoutSuccessUrl("/login?logout")
+                .logout().logoutUrl("/logout").logoutSuccessUrl("/authenticate?logout")
                 .and()
                 .httpBasic();
 

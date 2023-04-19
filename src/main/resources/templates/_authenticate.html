@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+
+</head>
+<body>
+    <!-- SIGN IN FORM -->
+    <form th:fragment="sign-in-form" th:method="POST" th:action="@{/authenticate}" class="sign-in-form">
+        <h2 class="title">Entrar</h2>
+        <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input id="email" name="email" type="email" placeholder="Email" />
+        </div>
+        <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input id="password" name="password" type="password" placeholder="Senha" />
+        </div>
+        <input type="submit" value="Login" class="btn solid" />
+        <p class="social-text">Ou entrar com sua rede-social (Não funciona.)</p>
+        <div class="social-media">
+            <a href="#" class="social-icon">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-icon">
+                <i class="fab fa-google"></i>
+            </a>
+            <a href="#" class="social-icon">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+    </form>
+
+    <!-- SIGN IN FORM -->
+    <form th:fragment="sign-up-form" th:action="@{/authenticate/signup}" th:object="${accountRegister}" method="POST" class="sign-up-form">
+        <h2 class="title">Registrar-se</h2>
+        <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input type="text" th:field="*{firstName}" placeholder="Primeiro nome" />
+        </div>
+        <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input type="text" th:field="*{lastName}" placeholder="Sobrenome (optional)" />
+        </div>
+        <div class="input-field">
+            <i class="fas fa-envelope"></i>
+            <input type="email" th:field="*{email}" placeholder="Email" />
+        </div>
+        <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" th:field="*{password}" placeholder="Senha" />
+        </div>
+        <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" th:field="*{confirmPassword}" placeholder="Confirma senha" />
+        </div>
+        <input type="submit" class="btn" value="Sign up" />
+        <p class="social-text">Ou entrar com sua rede-social (Não funciona.)</p>
+        <div class="social-media">
+            <a href="#" class="social-icon">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-icon">
+                <i class="fab fa-google"></i>
+            </a>
+            <a href="#" class="social-icon">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+    </form>
+</body>
+</html>

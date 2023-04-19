@@ -31,7 +31,7 @@ class AuthControllerTest {
 
     @BeforeEach
     void beforeEach() {
-        authController = new AuthController(accountService, checkRegisterParameters, userDetailsService);
+        authController = new AuthController(accountService, checkRegisterParameters);
         mockMvc = MockMvcBuilders.standaloneSetup(authController).build();
     }
 
