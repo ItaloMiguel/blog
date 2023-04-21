@@ -7,12 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Little Course</title>
 
-
+    <link rel="stylesheet" th:href="@{/css/search/style.css}">
 </head>
 <body>
-<header th:replace="~{_header :: header_search}">
+<header th:replace="~{_header_search :: header_search}">
 
 </header>
+
+
     <div sec:authorize="isAuthenticated()">
         <form th:action="@{/logout}" method="POST">
             <ul>

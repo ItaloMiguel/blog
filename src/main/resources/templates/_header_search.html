@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-  <link rel="stylesheet" th:href="@{/css/about/style.css}">
+  <link rel="stylesheet" th:href="@{/css/search/style.css}">
 
+  <!-- <link rel="stylesheet" href="../static/css/search/style.css"> -->
 </head>
 <body>
   <header th:fragment="header_search">
@@ -20,11 +21,18 @@
     </div>
     <div class="search">
       <span class="icon">
-        <ion-icon name="search-outline"></ion-icon>
-        <ion-icon name="close-outline"></ion-icon>
+        <ion-icon name="search-outline" class="searchBtn"></ion-icon>
+        <ion-icon name="close-outline" class="closeBtn"></ion-icon>
       </span>
     </div>
+    <div class="searchBox">
+      <form th:action="@{/search}" th:method="GET" role="search">
+        <input type="search" name="query" placeholder="Procure aqui . . .">
+        <button type="submit">Search</button>
+      </form>
+    </div>
 
+    <script th:src="@{/js/search/app.js}"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   </header>
