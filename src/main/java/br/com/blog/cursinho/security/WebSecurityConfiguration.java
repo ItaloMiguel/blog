@@ -25,6 +25,7 @@ public class WebSecurityConfiguration {
     private static final String[] WHITELIST = {
             "/signup",
             "/about",
+            "/search/**",
             "/"
     };
 
