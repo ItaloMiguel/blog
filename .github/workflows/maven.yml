@@ -16,8 +16,10 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java_version: ['17', '>=17']
 
     steps:
     - uses: actions/checkout@v3
