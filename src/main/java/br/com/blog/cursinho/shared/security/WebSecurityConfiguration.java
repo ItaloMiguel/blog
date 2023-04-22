@@ -45,7 +45,7 @@ public class WebSecurityConfiguration {
                 .and()
                 .httpBasic();
 
-        http.csrf().disable();
+//        http.csrf().disable();
         http.headers().frameOptions().disable();
 
         return http.build();

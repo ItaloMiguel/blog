@@ -5,6 +5,7 @@ import br.com.blog.cursinho.api.account.AccountRegisterForm;
 import br.com.blog.cursinho.api.account.AccountRepository;
 import br.com.blog.cursinho.api.role.RoleRepository;
 import br.com.blog.cursinho.shared.domain.Account;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -45,6 +46,7 @@ public class AccountRegisterService {
         return new ModelAndView("redirect:/");
     }
 
+    @Transactional
     private void saveAccount(AccountRegisterForm accountDTO) {
         log.info("Save account in the database");
 
