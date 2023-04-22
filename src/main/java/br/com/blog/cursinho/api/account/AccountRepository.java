@@ -1,6 +1,6 @@
-package br.com.blog.cursinho.account.repository;
+package br.com.blog.cursinho.api.account;
 
-import br.com.blog.cursinho.account.domain.Account;
+import br.com.blog.cursinho.shared.domain.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

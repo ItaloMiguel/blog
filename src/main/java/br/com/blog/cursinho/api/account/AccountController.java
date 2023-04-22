@@ -1,0 +1,41 @@
+package br.com.blog.cursinho.api.account;
+
+import br.com.blog.cursinho.api.account.service.AccountRegisterService;
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+@RequestMapping
+@AllArgsConstructor
+@Slf4j
+public class AccountController {
+
+    private final AccountRegisterService accountRegisterService;
+
+    @GetMapping("/authenticate")
+    public ModelAndView geAuthenticateView() {
+        log.info("[GET] Loading authentication view.");
+
+        ModelAndView modelAndView = new ModelAndView("auth/authenticate");
+
+        AccountRegisterForm accountRegister = new AccountRegisterForm();
+        modelAndView.addObject("accountRegister", accountRegister);
+
+        return modelAndView;
+    }
+
+    @PostMapping("/signup")
+    public ModelAndView sendRegisterView(@ModelAttribute @Valid AccountRegisterForm accountDTO, BindingResult bindingResult) {
+        log.info("[POST] Receiving registration request.");
+        return accountRegisterService.execute(accountDTO, bindingResult);
+    }
+
+}

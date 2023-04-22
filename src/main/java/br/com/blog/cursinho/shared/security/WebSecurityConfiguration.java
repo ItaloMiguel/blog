@@ -1,4 +1,4 @@
-package br.com.blog.cursinho.security;
+package br.com.blog.cursinho.shared.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

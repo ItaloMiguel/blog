@@ -1,4 +1,4 @@
-package br.com.blog.cursinho.account.domain;
+package br.com.blog.cursinho.shared.enums;
 
 public enum RoleType {
     ROLE_USER,

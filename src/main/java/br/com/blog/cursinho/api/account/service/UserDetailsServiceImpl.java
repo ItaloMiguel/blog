@@ -1,7 +1,6 @@
-package br.com.blog.cursinho.account.service.impl;
+package br.com.blog.cursinho.api.account.service;
 
-import br.com.blog.cursinho.account.domain.Account;
-import br.com.blog.cursinho.account.repository.AccountRepository;
+import br.com.blog.cursinho.api.account.AccountRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

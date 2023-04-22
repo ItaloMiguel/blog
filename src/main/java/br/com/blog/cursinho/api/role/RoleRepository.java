@@ -1,10 +1,9 @@
-package br.com.blog.cursinho.account.repository;
+package br.com.blog.cursinho.api.role;
 
-import br.com.blog.cursinho.account.domain.Role;
+import br.com.blog.cursinho.shared.domain.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Repository

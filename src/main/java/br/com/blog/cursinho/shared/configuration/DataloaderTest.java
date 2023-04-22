@@ -1,10 +1,10 @@
-package br.com.blog.cursinho.config;
+package br.com.blog.cursinho.shared.configuration;
 
-import br.com.blog.cursinho.account.domain.Account;
-import br.com.blog.cursinho.account.domain.Role;
-import br.com.blog.cursinho.account.domain.RoleType;
-import br.com.blog.cursinho.account.repository.AccountRepository;
-import br.com.blog.cursinho.account.repository.RoleRepository;
+import br.com.blog.cursinho.shared.domain.Account;
+import br.com.blog.cursinho.shared.domain.Role;
+import br.com.blog.cursinho.shared.enums.RoleType;
+import br.com.blog.cursinho.api.account.AccountRepository;
+import br.com.blog.cursinho.api.role.RoleRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,15 +13,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
-@Profile("dev")
+@Profile("test")
 @Configuration
-public class DataloaderDev {
+public class DataloaderTest {
 
     private final RoleRepository roleRepository;
     private final AccountRepository accountRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public DataloaderDev(RoleRepository roleRepository, AccountRepository accountRepository, PasswordEncoder passwordEncoder) {
+    public DataloaderTest(RoleRepository roleRepository, AccountRepository accountRepository, PasswordEncoder passwordEncoder) {
         this.roleRepository = roleRepository;
         this.accountRepository = accountRepository;
         this.passwordEncoder = passwordEncoder;
@@ -29,11 +29,12 @@ public class DataloaderDev {
 
     @Bean
     public void onApplicationEvent() {
-        System.out.println("\n\n+++++++++ DATA LOADER DEV RUNNING ++++++++++++++++\n\n");
+        System.out.println("\n\n+++++++++ DATA LOADER TEST RUNNING ++++++++++++++++\n\n");
 
         createRoleIfNotExist(RoleType.ROLE_ADMIN.name());
         createRoleIfNotExist(RoleType.ROLE_USER.name());
 
+        this.createNewTestIfNotExist("ROLE_ADMIN");
     }
 
     @Transactional

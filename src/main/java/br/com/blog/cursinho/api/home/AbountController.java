@@ -1,4 +1,4 @@
-package br.com.blog.cursinho.home.controller;
+package br.com.blog.cursinho.api.home;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

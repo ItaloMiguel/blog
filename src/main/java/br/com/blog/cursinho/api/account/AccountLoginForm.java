@@ -1,4 +1,4 @@
-package br.com.blog.cursinho.account.dto;
+package br.com.blog.cursinho.api.account;
 
 import lombok.*;
 
@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class AccountLoginRequestDTO {
+public class AccountLoginForm {
     private String email;
     private String password;
 }
