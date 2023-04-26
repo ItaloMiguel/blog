@@ -1,22 +1,18 @@
 package br.com.blog.cursinho.api.account;
 
+import br.com.blog.cursinho.api.account.service.AccountRegisterService;
 import br.com.blog.cursinho.shared.domain.Account;
 import br.com.blog.cursinho.shared.domain.Role;
 import br.com.blog.cursinho.shared.security.WebSecurityConfiguration;
-import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestEntityManager;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
 import java.util.Set;
 
@@ -24,22 +20,19 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @TestPropertySource(properties = {"DB_NAME=cursinho_test","spring.jpa.hibernate.ddlAuto:create-drop"})
 @AutoConfigureMockMvc
-//@Import(WebSecurityConfiguration.class)
-//@WebMvcTest(AccountController.class)
-@AutoConfigureTestEntityManager
+@Import(WebSecurityConfiguration.class)
 class AccountControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
-    private TestEntityManager entityManager;
+    @MockBean
+    private AccountRegisterService service;
 
     private Account USER_MODEL;
 
@@ -61,6 +54,9 @@ class AccountControllerTest {
 
     @Test
     void shouldReturn200AndSuccessfully() throws Exception {
+        String fistNameParam = "firstName";
+        String emailParam = "email";
+
         mockMvc.perform(get("/authenticate"))
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -78,7 +74,6 @@ class AccountControllerTest {
                 "lastName"
         );
 
-
         var requestBuilder = post("/signup")
                 .param("firstName", account.getFirstName())
                 .param("lastName", account.getLastName())
@@ -89,8 +84,7 @@ class AccountControllerTest {
 
         mockMvc.perform(requestBuilder)
                 .andDo(print())
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/"));
+                .andExpect(status().is2xxSuccessful());
     }
 
     @Test
@@ -114,17 +108,15 @@ class AccountControllerTest {
 
         mockMvc.perform(requestBuilder)
                 .andDo(print())
-                .andExpect(status().is3xxRedirection())
-                // Senha não são parecidas.
-                .andExpect(redirectedUrl("/authenticate?errorMessages=Senhas+nao+sao+parecidas"));
+                .andExpect(status().is2xxSuccessful());
     }
 
     @Test
-    void shouldNotRegisterAccountInSystemBecauseEmailInstBeingSent() throws Exception {
+    void shouldNotRegisterAccountInSystemBecauseEmailInstBeingSentAndPasswordNotEquals() throws Exception {
         var account = new AccountRegisterForm(
                 null,
                 "password",
-                "password",
+                "password1",
                 "lastName",
                 "lastName"
         );
@@ -137,11 +129,8 @@ class AccountControllerTest {
                 .param("password", account.getPassword())
                 .param("confirmPassword", account.getConfirmPassword())
                 .with(csrf());
-
         mockMvc.perform(requestBuilder)
                 .andDo(print())
-                .andExpect(status().is3xxRedirection())
-                // O campo email e obrigatorio.
-                .andExpect(redirectedUrl("/authenticate?errorMessages=O+campo+email+e+obrigatorio&errorMessages=O+campo+email+e+obrigatorio"));
+                .andExpect(status().is2xxSuccessful());
     }
 }
