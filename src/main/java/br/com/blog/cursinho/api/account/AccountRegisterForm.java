@@ -12,20 +12,20 @@ import org.springframework.stereotype.Component;
 @ToString
 @Component
 public class AccountRegisterForm {
-    @NotBlank(message = "O campo email é obrigatório")
-    @NotNull(message = "O campo email é obrigatório")
+    @NotBlank(message = "O campo email e obrigatorio")
+    @NotNull(message = "O campo email e obrigatorio")
     private String email;
 
-    @NotBlank(message = "O campo senha é obrigatório")
-    @NotNull(message = "O campo senha é obrigatório")
+    @NotBlank(message = "O campo senha e obrigatorio")
+    @NotNull(message = "O campo senha e obrigatorio")
     private String password;
 
-    @NotBlank(message = "O campo confirma a senha é obrigatório")
-    @NotNull(message = "O campo confirma a senha é obrigatório")
+    @NotBlank(message = "O campo confirma a senha e obrigatorio")
+    @NotNull(message = "O campo confirma a senha e obrigatorio")
     private String confirmPassword;
 
-    @NotBlank(message = "O campo primeiro nome é obrigatório")
-    @NotNull(message = "O campo primeiro nome é obrigatório")
+    @NotBlank(message = "O campo primeiro nome e obrigatorio")
+    @NotNull(message = "O campo primeiro nome e obrigatorio")
     private String firstName;
 
     private String lastName;

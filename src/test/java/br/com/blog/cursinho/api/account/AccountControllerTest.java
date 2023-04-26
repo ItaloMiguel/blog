@@ -15,6 +15,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
 import java.util.Set;
 
@@ -59,10 +61,11 @@ class AccountControllerTest {
 
     @Test
     void shouldReturn200AndSuccessfully() throws Exception {
-         mockMvc.perform(get("/authenticate"))
-                 .andExpect(status().isOk())
-                 .andExpect(view().name("auth/authenticate"))
-                 .andExpect(model().attributeExists("accountRegister"));
+        mockMvc.perform(get("/authenticate"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(view().name("auth/authenticate"))
+                .andExpect(model().attributeExists("accountRegister"));
     }
 
     @Test
@@ -70,18 +73,75 @@ class AccountControllerTest {
         var account = new AccountRegisterForm(
                 "email@email.com",
                 "password",
-                "firstName",
+                "password",
                 "lastName",
                 "lastName"
         );
 
-        mockMvc.perform(post("/signup")
-                        .param("firstName", account.getFirstName())
-                        .param("lastName", account.getLastName())
-                        .param("email", account.getEmail())
-                        .param("password", account.getPassword())
-                        .param("confirmPassword", account.getConfirmPassword())
-                        .with(csrf())
-                ).andExpect(status().is3xxRedirection());
+
+        var requestBuilder = post("/signup")
+                .param("firstName", account.getFirstName())
+                .param("lastName", account.getLastName())
+                .param("email", account.getEmail())
+                .param("password", account.getPassword())
+                .param("confirmPassword", account.getConfirmPassword())
+                .with(csrf());
+
+        mockMvc.perform(requestBuilder)
+                .andDo(print())
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/"));
+    }
+
+    @Test
+    void shouldNotRegisterAccountInSystemBecausePasswordIsNotEquals() throws Exception {
+        var account = new AccountRegisterForm(
+                "email@email.com",
+                "password",
+                "password1",
+                "lastName",
+                "lastName"
+        );
+
+
+        var requestBuilder = post("/signup")
+                .param("firstName", account.getFirstName())
+                .param("lastName", account.getLastName())
+                .param("email", account.getEmail())
+                .param("password", account.getPassword())
+                .param("confirmPassword", account.getConfirmPassword())
+                .with(csrf());
+
+        mockMvc.perform(requestBuilder)
+                .andDo(print())
+                .andExpect(status().is3xxRedirection())
+                // Senha não são parecidas.
+                .andExpect(redirectedUrl("/authenticate?errorMessages=Senhas+nao+sao+parecidas"));
+    }
+
+    @Test
+    void shouldNotRegisterAccountInSystemBecauseEmailInstBeingSent() throws Exception {
+        var account = new AccountRegisterForm(
+                null,
+                "password",
+                "password",
+                "lastName",
+                "lastName"
+        );
+
+
+        var requestBuilder = post("/signup")
+                .param("firstName", account.getFirstName())
+                .param("lastName", account.getLastName())
+                .param("email", account.getEmail())
+                .param("password", account.getPassword())
+                .param("confirmPassword", account.getConfirmPassword())
+                .with(csrf());
+
+        mockMvc.perform(requestBuilder)
+                .andDo(print())
+                .andExpect(status().is3xxRedirection())
+                // O campo email e obrigatorio.
+                .andExpect(redirectedUrl("/authenticate?errorMessages=O+campo+email+e+obrigatorio&errorMessages=O+campo+email+e+obrigatorio"));
     }
 }

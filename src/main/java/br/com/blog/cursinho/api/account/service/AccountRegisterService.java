@@ -77,7 +77,7 @@ public class AccountRegisterService {
         var confirmPassword = accountDto.getConfirmPassword();
 
         if(!password.equals(confirmPassword)) {
-            errorMessages.add("Senhas não são parecidas.");
+            errorMessages.add("Senhas nao sao parecidas");
         }
     }
 }
