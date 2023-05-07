@@ -1,39 +1,36 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-  <link rel="stylesheet" th:href="@{/css/search/style.css}">
-
-  <!-- <link rel="stylesheet" href="../static/css/search/style.css"> -->
+  <link rel="stylesheet" href="../static/css/header/black.css">
+  <link rel="stylesheet" href="../static/css/header/white.css">
 </head>
 <body>
-  <header th:fragment="header_search">
-    <a th:href="@{/}" class="logo">Little Course</a>
-    <div>
-      <ul class="group">
-        <ul class="navigation">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </ul>
+  <header class="black" th:fragment="header_search">
+    <div class="main-logo">
+      <h1>Cource</h1>
     </div>
     <div class="search">
-      <span class="icon">
-        <ion-icon name="search-outline" class="searchBtn"></ion-icon>
-        <ion-icon name="close-outline" class="closeBtn"></ion-icon>
-      </span>
-    </div>
-    <div class="searchBox">
       <form th:action="@{/search/item}" th:method="GET" role="search">
-        <input type="search" name="query" placeholder="Procure aqui . . .">
+        <input type="search" name="query" placeholder="Pesquisar...">
       </form>
     </div>
+    <nav>
+      <div id="change-theme" class="change-theme">
+        <button type="button">Trocar o tema</button>
+      </div>
+      <div class="profile-photo">
+        <!-- IF IS NOT LOGGED LOAD THIS -->
+        <div class="img" sec:authorize="!isAuthenticated()">
 
-    <script th:src="@{/js/search/app.js}"></script>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+        </div>
+
+        <!-- IF IS LOGGED LOAD THIS -->
+        <div sec:authorize="isAuthenticated()">
+            <img src="bob.jpg" alt="profile-photo">
+        </div>
+      </div>
+    </nav>
   </header>
+
 </body>
 </html>

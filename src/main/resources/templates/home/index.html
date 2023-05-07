@@ -5,27 +5,16 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Little Course</title>
+    <title>Cursinho</title>
 
-    <link rel="stylesheet" th:href="@{/css/search/style.css}">
+    <link rel="stylesheet" th:href="@{/css/header/black.css}">
+    <link rel="stylesheet" th:href="@{/css/header/white.css}">
 </head>
 <body>
 <header th:replace="~{_header_search :: header_search}">
 
 </header>
 
-
-    <div sec:authorize="isAuthenticated()">
-        <form th:action="@{/logout}" method="POST">
-            <ul>
-                <li>
-                    <label><span sec:authentication="name">Username</span></label>
-                </li>
-                <li>
-                    <button>Logout</button>
-                </li>
-            </ul>
-        </form>
-    </div>
+<script th:src="@{/js/header/changeTheme.js}"></script>
 </body>
 </html>
