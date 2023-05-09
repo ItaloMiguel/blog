@@ -1,7 +1,17 @@
-# Getting Started
+# CURSINHO
+Objetivo é apenas fazer um site estilo blog, meio ganacioso para meu nível de programador, porém não impossível (Eu acho).
 
-### Reference Documentation
-For further reference, please consider the following sections:
+### Tecnologias utilizada
+- 
+
+### Docs do projeto
+Dentro da pasta '[/doc](https://github.com/ItaloMiguel/cursinho/tree/master/doc)' você vai conseguir encontrar mais documentações para melhorar seu compreendimento do projeto. Estou tentando deixar o mais organizado o possível e sempre atualizando.
+
+* [Setup do projeto](https://github.com/ItaloMiguel/cursinho/blob/master/doc/SETUP.md)
+* [Tecnológia e Arquitetura](https://github.com/ItaloMiguel/cursinho/blob/master/doc/TOOLS.md)
+
+### Documentação de referência
+Para referência adicional, considere as seguintes seções:
 
 * [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
 * [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/3.0.5/maven-plugin/reference/html/)
@@ -12,8 +22,8 @@ For further reference, please consider the following sections:
 * [Spring Security](https://docs.spring.io/spring-boot/docs/3.0.5/reference/htmlsingle/#web.security)
 * [Spring Data JPA](https://docs.spring.io/spring-boot/docs/3.0.5/reference/htmlsingle/#data.sql.jpa-and-spring-data)
 
-### Guides
-The following guides illustrate how to use some features concretely:
+### Guias
+Os guias a seguir ilustram como usar alguns recursos de forma concreta:
 
 * [Handling Form Submission](https://spring.io/guides/gs/handling-form-submission/)
 * [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
