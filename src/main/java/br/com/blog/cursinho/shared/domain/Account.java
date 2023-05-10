@@ -65,21 +65,25 @@ public class Account implements UserDetails {
         return this.firstName + " " + this.lastName;
     }
 
+    // always needs to be true if there are no business rules
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
+    // always needs to be true if there are no business rules
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
+    // always needs to be true if there are no business rules
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
+    // always needs to be true if there are no business rules
     @Override
     public boolean isEnabled() {
         return true;
