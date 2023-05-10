@@ -7,6 +7,7 @@ Dentro da pasta '[/doc](https://github.com/ItaloMiguel/cursinho/tree/master/doc)
 
 * [Setup do projeto](https://github.com/ItaloMiguel/cursinho/blob/master/doc/SETUP.md)
 * [Tecnológia e Arquitetura](https://github.com/ItaloMiguel/cursinho/blob/master/doc/TOOLS.md)
+* [Regras para ser seguida](https://github.com/ItaloMiguel/cursinho/blob/master/doc/RULES.md)
 
 ### Documentação de referência
 Para referência adicional, considere as seguintes seções:
