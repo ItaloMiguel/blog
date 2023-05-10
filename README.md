@@ -1,5 +1,5 @@
 # CURSINHO
-Objetivo é apenas fazer um site estilo blog, meio ganacioso para meu nível de programador, porém não impossível (Eu acho).
+Objetivo é apenas fazer um site estilo blog para documentar tudo que estudo para tentar ajudar a mim mesmo e aos colegas que perderão aulas ou est
 
 ### Docs do projeto
 Dentro da pasta '[/doc](https://github.com/ItaloMiguel/cursinho/tree/master/doc)' você vai conseguir encontrar mais documentações para melhorar seu compreendimento do projeto. Estou tentando deixar o mais organizado possível e sempre atualizando.
