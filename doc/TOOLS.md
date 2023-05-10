@@ -3,10 +3,16 @@
 [Voltar para a pasta principal](https://github.com/ItaloMiguel/cursinho)
 
 ## Tecnológias
-- Spring boot 3.0.5
 - ngnix
 - pom.xml
-- Java >= 17
+- back-end:
+    - java >= 17
+    - spring boot 3.0.5
+- front-end:
+    - html
+    - css
+    - scss
+    - javascript
 - database:
     - postgres
     - h2 (banco de dados em memória para teste)
