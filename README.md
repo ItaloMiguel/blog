@@ -1,11 +1,8 @@
 # CURSINHO
 Objetivo é apenas fazer um site estilo blog, meio ganacioso para meu nível de programador, porém não impossível (Eu acho).
 
-### Tecnologias utilizada
-- 
-
 ### Docs do projeto
-Dentro da pasta '[/doc](https://github.com/ItaloMiguel/cursinho/tree/master/doc)' você vai conseguir encontrar mais documentações para melhorar seu compreendimento do projeto. Estou tentando deixar o mais organizado o possível e sempre atualizando.
+Dentro da pasta '[/doc](https://github.com/ItaloMiguel/cursinho/tree/master/doc)' você vai conseguir encontrar mais documentações para melhorar seu compreendimento do projeto. Estou tentando deixar o mais organizado possível e sempre atualizando.
 
 * [Setup do projeto](https://github.com/ItaloMiguel/cursinho/blob/master/doc/SETUP.md)
 * [Tecnológia e Arquitetura](https://github.com/ItaloMiguel/cursinho/blob/master/doc/TOOLS.md)
