@@ -1,5 +1,6 @@
 # CURSINHO
-Objetivo é apenas fazer um site estilo blog para documentar tudo que estudo para tentar ajudar a mim mesmo e aos colegas que perderão aulas ou est
+Um site estilo blog para postar todas as coisas que eu estudar dentro do pré-vestibular.
+Link do site: [não existe]().
 
 ### Docs do projeto
 Dentro da pasta '[/doc](https://github.com/ItaloMiguel/cursinho/tree/master/doc)' você vai conseguir encontrar mais documentações para melhorar seu compreendimento do projeto. Estou tentando deixar o mais organizado possível e sempre atualizando.
