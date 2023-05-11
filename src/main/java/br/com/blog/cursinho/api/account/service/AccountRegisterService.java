@@ -29,13 +29,11 @@ public class AccountRegisterService {
 
 
     public ModelAndView execute(AccountRegisterForm accountRegisterForm, BindingResult bindingResult) {
-        this.bindingResultHaveErrors(bindingResult);
-        this.passwordIsEquals(accountRegisterForm);
+        this.passwordIsEquals(accountRegisterForm, bindingResult);
 
-        if (!errorMessages.isEmpty()) {
+        if (bindingResult.hasErrors()) {
             ModelAndView modelAndView = new ModelAndView("redirect:/authenticate");
 
-            modelAndView.addObject("errorMessages", errorMessages);
             modelAndView.addObject("account", accountRegisterForm);
 
             return modelAndView;
@@ -55,29 +53,18 @@ public class AccountRegisterService {
                 .makeUser(roleRepository)
                 .build();
 
-        successMessages.add("Cadastro realizado com sucesso.");
-
         accountRepository.save(account);
     }
 
-    private void bindingResultHaveErrors(BindingResult bindingResult) {
-        log.info("Checking the registration request");
-
-        if (bindingResult.hasErrors()) {
-            for (ObjectError objectError : bindingResult.getAllErrors()) {
-                errorMessages.add(objectError.getDefaultMessage());
-            }
-        }
-    }
-
-    private void passwordIsEquals(AccountRegisterForm accountDto) {
+    private void passwordIsEquals(AccountRegisterForm accountDto, BindingResult bindingResult) {
         log.info("Checking if password and confirmPassword is equals");
 
         var password = accountDto.getPassword();
         var confirmPassword = accountDto.getConfirmPassword();
 
         if(!password.equals(confirmPassword)) {
-            errorMessages.add("Senhas nao sao parecidas");
+            ObjectError error = new ObjectError("senhas", "As senhas não são parecidas.");
+            bindingResult.addError(error);
         }
     }
 }

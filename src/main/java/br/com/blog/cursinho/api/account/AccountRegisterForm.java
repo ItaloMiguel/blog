@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @ToString
 @Component
+@Builder
 public class AccountRegisterForm {
     @NotBlank(message = "O campo email e obrigatorio")
     @NotNull(message = "O campo email e obrigatorio")
