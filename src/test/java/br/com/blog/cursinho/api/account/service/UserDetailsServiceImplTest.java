@@ -35,24 +35,25 @@ class UserDetailsServiceImplTest {
         repository = Mockito.mock(AccountRepository.class);
         service = new UserDetailsServiceImpl(repository);
 
-        ROLE_USER = new Role(1L, "ROLE_USER");
+        ROLE_USER = Role.builder()
+                .id(1L)
+                .name("ROLE_USER")
+                .build();
 
-        ACCOUNT = new Account(
-                1L,
-                "email@email.com",
-                "password",
-                "firstName",
-                "lastName",
-                Set.of(this.ROLE_USER)
-        );
-
+        ACCOUNT = Account.builder()
+                .id(1L)
+                .email("email@email.com")
+                .password("password")
+                .firstName("firstName")
+                .lastName("lastName")
+                .build();
     }
 
     @Test
     void shouldReturnSuccessfullyAndLogin() {
         var OPTIONAL_ACCOUNT = Optional.of(ACCOUNT);
 
-        Mockito.when(repository.findByEmail("email@email.com")).thenReturn(OPTIONAL_ACCOUNT);
+        Mockito.when(repository.findByEmail(Mockito.any(String.class))).thenReturn(OPTIONAL_ACCOUNT);
 
         var response = service.loadUserByUsername("email@email.com");
 
@@ -77,7 +78,7 @@ class UserDetailsServiceImplTest {
     void shouldReturnErrorEmailNotFound() {
         Optional<Account> EMPTY = Optional.empty();
 
-        Mockito.when(repository.findByEmail("email@email.com")).thenReturn(EMPTY);
+        Mockito.when(repository.findByEmail(Mockito.any(String.class))).thenReturn(EMPTY);
 
         try {
             var response = service.loadUserByUsername("email@email.com");
