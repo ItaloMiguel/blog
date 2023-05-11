@@ -46,6 +46,7 @@ class UserDetailsServiceImplTest {
                 .password("password")
                 .firstName("firstName")
                 .lastName("lastName")
+                .roles(Set.of(ROLE_USER))
                 .build();
     }
 
