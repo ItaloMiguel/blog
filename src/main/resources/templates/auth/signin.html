@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Little Course</title>
+
+  <link rel="stylesheet" th:href="@{/css/auth/style.css}" />
+
+  <link rel="stylesheet" href="../../static/css/auth/style.css" />
+
+</head>
+<body>
+<header th:replace="~{_header_search :: header_search}"></header>
+
+<!-- SIGN IN FORM -->
+<form th:method="POST" th:action="@{/authenticate}" class="sign-in-form">
+  <h2 class="title">Entrar</h2>
+  <div class="input-field">
+    <i class="fas fa-user"></i>
+    <input id="email" name="email" type="email" placeholder="Email" />
+  </div>
+  <div class="input-field">
+    <i class="fas fa-lock"></i>
+    <input id="password" name="password" type="password" placeholder="Senha" />
+  </div>
+  <input type="submit" value="Login" class="btn solid" />
+  <p class="social-text">Ou entrar com sua rede-social (Não funciona.)</p>
+  <div class="social-media">
+    <a href="#" class="social-icon">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="#" class="social-icon">
+      <i class="fab fa-twitter"></i>
+    </a>
+    <a href="#" class="social-icon">
+      <i class="fab fa-google"></i>
+    </a>
+    <a href="#" class="social-icon">
+      <i class="fab fa-linkedin-in"></i>
+    </a>
+  </div>
+</form>
+
+<script th:src="@{/js/header/changeTheme.js}"></script>
+
+</body>
+</html>

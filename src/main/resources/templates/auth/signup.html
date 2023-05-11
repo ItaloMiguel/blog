@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en" xmlns:th="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Little Course</title>
+
+    <link rel="stylesheet" th:href="@{/css/auth/style.css}" />
+
+    <link rel="stylesheet" href="../../static/css/auth/style.css" />
+</head>
+<body>
+<header th:replace="~{_header_search :: header_search}"></header>
+
+<!-- SIGN IN FORM -->
+<form th:action="@{/signup}" th:object="${accountRegister}" th:method="POST" class="sign-up-form">
+    <h2 class="title">Registrar-se</h2>
+    <div class="input-field">
+        <p  th:if="${#fields.hasErrors('firstName')}"></p>
+
+        <i class="fas fa-user"></i>
+        <input type="text" th:field="*{firstName}" placeholder="Primeiro nome" />
+    </div>
+    <div class="input-field">
+        <p  th:if="${#fields.hasErrors('lastName')}"></p>
+
+        <i class="fas fa-user"></i>
+        <input type="text" th:field="*{lastName}" placeholder="Sobrenome (optional)" />
+    </div>
+    <div class="input-field">
+        <p  th:if="${#fields.hasErrors('${accountRegister.email}')}" th:errors="*{accountRegister.email}"></p>
+
+        <i class="fas fa-envelope"></i>
+        <input type="email" th:field="*{email}" placeholder="Email" />
+    </div>
+    <div class="input-field">
+        <p  th:if="${#fields.hasErrors('password') || #fields.hasErrors('passwordIsNotEquals')}">Invalid Age</p>
+
+        <i class="fas fa-lock"></i>
+        <input type="password" th:field="*{password}" placeholder="Senha" />
+    </div>
+    <div class="input-field">
+        <p  th:if="${#fields.hasErrors('confirmPassword') || #fields.hasErrors('passwordIsNotEquals')}">Invalid Age</p>
+
+        <i class="fas fa-lock"></i>
+        <input type="password" th:field="*{confirmPassword}" placeholder="Confirma senha" />
+    </div>
+    <input type="submit" class="btn" value="Sign up" />
+    <p class="social-text">Ou entrar com sua rede-social (Não funciona.)</p>
+    <div class="social-media">
+        <a href="#" class="social-icon">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="social-icon">
+            <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" class="social-icon">
+            <i class="fab fa-google"></i>
+        </a>
+        <a href="#" class="social-icon">
+            <i class="fab fa-linkedin-in"></i>
+        </a>
+    </div>
+</form>
+
+
+<script th:src="@{/js/header/changeTheme.js}"></script>
+</body>
+</html>
