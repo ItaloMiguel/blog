@@ -23,10 +23,10 @@ public class WebSecurityConfiguration {
     }
 
     private static final String[] WHITELIST = {
-            "/signup",
+            "/app/signup",
             "/about",
-            "/search/**",
-            "/"
+            "/app/search/**",
+            "/app/home",
     };
 
     @Bean
@@ -37,11 +37,11 @@ public class WebSecurityConfiguration {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/authenticate")
+                .loginPage("/app/signin")
                 .usernameParameter("email")
-                .defaultSuccessUrl("/", true).failureUrl("/authenticate?error").permitAll()
+                .defaultSuccessUrl("/", true).failureUrl("/app/signin?error").permitAll()
                 .and()
-                .logout().logoutUrl("/logout").logoutSuccessUrl("/authenticate?logout")
+                .logout().logoutUrl("/app/logout").logoutSuccessUrl("/app/signin?logout")
                 .and()
                 .httpBasic();
 

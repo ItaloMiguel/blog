@@ -32,7 +32,7 @@ public class AccountRegisterService {
         this.passwordIsEquals(accountRegisterForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
-            ModelAndView modelAndView = new ModelAndView("redirect:/authenticate");
+            ModelAndView modelAndView = new ModelAndView("redirect:/app/signup");
 
             modelAndView.addObject("account", accountRegisterForm);
 
@@ -41,7 +41,7 @@ public class AccountRegisterService {
 
         this.saveAccount(accountRegisterForm);
 
-        return new ModelAndView("redirect:/");
+        return new ModelAndView("redirect:/app/signin");
     }
 
     @Transactional
@@ -63,7 +63,7 @@ public class AccountRegisterService {
         var confirmPassword = accountDto.getConfirmPassword();
 
         if(!password.equals(confirmPassword)) {
-            ObjectError error = new ObjectError("senhas", "As senhas não são parecidas.");
+            ObjectError error = new ObjectError("password", "As senhas não são parecidas.");
             bindingResult.addError(error);
         }
     }

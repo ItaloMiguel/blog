@@ -13,19 +13,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping
+@RequestMapping("/app")
 @AllArgsConstructor
 @Slf4j
 public class AccountController {
 
     private final AccountRegisterService accountRegisterService;
 
-    @GetMapping("/authenticate")
-    public ModelAndView geAuthenticateView() {
-        log.info("[GET] Loading authentication view.");
+    @GetMapping("/signin")
+    public ModelAndView getSingninView() {
+        log.info("[GET] Get singnin view.");
+        return new ModelAndView("auth/signin");
+    }
 
-        ModelAndView modelAndView = new ModelAndView("auth/authenticate");
+    @GetMapping("/signup")
+    public ModelAndView getSignupView() {
+        log.info("[GET] Get signup view.");
 
+        ModelAndView modelAndView = new ModelAndView("auth/signup");
         AccountRegisterForm accountRegister = new AccountRegisterForm();
         modelAndView.addObject("accountRegister", accountRegister);
 
