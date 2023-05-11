@@ -1,6 +1,9 @@
 package br.com.blog.cursinho.shared.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,16 +20,26 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Builder
 public class Account implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @NotBlank
+    @Email
+    @Column(unique = true)
     private String email;
 
+    @NotNull
+    @NotBlank
     private String password;
 
+    @NotNull
+    @NotBlank
+    @Column(unique = true)
     private String firstName;
 
     private String lastName;
