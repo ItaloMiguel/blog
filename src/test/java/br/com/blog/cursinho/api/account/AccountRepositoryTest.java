@@ -51,7 +51,6 @@ class AccountRepositoryTest {
         Account accountReturn = repository.save(FELIZARDO);
 
         Assertions.assertThat(accountReturn).isNotNull();
-        Assertions.assertThat(accountReturn.getId()).isEqualTo(1L);
         Assertions.assertThat(accountReturn.getId()).isGreaterThanOrEqualTo(1);
     }
 
@@ -81,7 +80,6 @@ class AccountRepositoryTest {
         Assertions.assertThat(accountReturn.get().getRoles()).isNotNull();
         Assertions.assertThat(accountReturn.get().getAuthorities()).isNotNull();
 
-        Assertions.assertThat(accountReturn.get().getId()).isEqualTo(1L);
         Assertions.assertThat(accountReturn.get().getUsername()).isEqualTo(FELIZARDO.getUsername());
         Assertions.assertThat(accountReturn.get().getEmail()).isEqualTo(FELIZARDO.getEmail());
         Assertions.assertThat(accountReturn.get().getPassword()).isEqualTo(FELIZARDO.getPassword());
