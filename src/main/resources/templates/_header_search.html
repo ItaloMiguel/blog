@@ -10,7 +10,7 @@
       <h1>Cource</h1>
     </div>
     <div class="search">
-      <form th:action="@{/search/item}" th:method="GET" role="search">
+      <form th:action="@{app/search/item}" th:method="GET" role="search">
         <input type="search" name="query" placeholder="Pesquisar...">
       </form>
     </div>
@@ -19,18 +19,30 @@
         <button type="button">Trocar o tema</button>
       </div>
       <div class="profile-photo">
-        <!-- IF IS NOT LOGGED LOAD THIS -->
-        <div class="img" sec:authorize="!isAuthenticated()">
-
+        <div class="photo" id="profile-photo" sec:authorize="!isAuthenticated()">
         </div>
 
-        <!-- IF IS LOGGED LOAD THIS -->
-        <div sec:authorize="isAuthenticated()">
+        <!-- <div class="photo" sec:authorize="isAuthenticated()">
             <img src="bob.jpg" alt="profile-photo">
-        </div>
+        </div> -->
       </div>
     </nav>
+    
+
+    <script th:src="@{/js/header/changeTheme.js}"></script>
+    <script th:src="@{/js/header/dropDown.js}"></script>
   </header>
+  <div class="container-profile">
+    <h1>TEST</h1>
+    <p>Test</p>
+    <p>Test</p>
+  </div>
+  <div class="container-test">
+    <h1>TEST</h1>
+    <p>Test</p>
+    <p>Test</p>
+  </div>
+
 
 </body>
 </html>

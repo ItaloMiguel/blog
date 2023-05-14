@@ -71,6 +71,7 @@ header nav {
   display: flex;
   align-items: center;
 }
+
 header nav div {
   margin: 0px 10px;
 }
@@ -115,19 +116,19 @@ header nav .change-theme button.light-mode:hover {
   padding: 5px;
 }
 
-header .profile-photo div {
+header .profile-photo .photo {
   width: 48px;
   height: 48px;
   border-radius: 100%;
 }
-header .profile-photo div.dark-mode {
+header .profile-photo .photo.dark-mode {
   background-color: var(--dark-theme-photo);
 }
-header .profile-photo div.light-mode {
+header .profile-photo .photo.light-mode {
   background-color: var(--white-theme-photo);
 }
 
-header .profile-photo div img {
+header .profile-photo .photo {
   width: 100%;
   height: 100%;
   border-radius: 100%;

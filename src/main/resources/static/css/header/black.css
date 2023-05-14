@@ -103,3 +103,24 @@ textarea:focus, input:focus {
     height: 100%;
     border-radius: 100%;
 }
+
+.container-profile {
+    width: 10rem;
+    height: auto;
+    background-color: var(--dark-theme-back-groud);
+    color: var(--dark-theme-letter);
+
+    position: absolute;
+    top: 4rem;
+    right: 1rem;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-test {
+    width: auto;
+    height: auto;
+    background-color: aqua;
+}
