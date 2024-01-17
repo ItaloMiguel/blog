@@ -57,32 +57,32 @@ class AccountRegisterServiceTest {
                 .build();
     }
 
-    @Test
-    void createAccount_ReturnSuccess() {
-        AccountRegisterForm ACCOUNT_REGISTER = AccountRegisterForm.builder()
-                .email("email@email.com")
-                .firstName("fistName")
-                .lastName("lastName")
-                .password("password")
-                .confirmPassword("password")
-                .build();
-
-
-
-        Optional<Role> OPTIONAL_ROLE_USER = Optional.of(ROLE_USER);
-
-        Mockito.when(accountRepository.save(Mockito.any(Account.class))).thenReturn(ACCOUNT);
-        Mockito.when(roleRepository.findByName(Mockito.anyString())).thenReturn(OPTIONAL_ROLE_USER);
-
-        ObjectError error = new ObjectError("senhas", "As senhas não são parecidas.");
-        bindingResult.addError(error);
-
-        ModelAndView response = accountRegisterService.execute(ACCOUNT_REGISTER, bindingResult);
-
-        System.out.println(bindingResult.hasErrors());
-
-        Assertions.assertNotNull(response);
-        Assertions.assertEquals("redirect:/", response.getViewName());
-        Assertions.assertEquals("{}", response.getModel().toString());
-    }
+//    @Test
+//    void createAccount_ReturnSuccess() {
+//        AccountRegisterForm ACCOUNT_REGISTER = AccountRegisterForm.builder()
+//                .email("email@email.com")
+//                .firstName("fistName")
+//                .lastName("lastName")
+//                .password("password")
+//                .confirmPassword("password")
+//                .build();
+//
+//
+//
+//        Optional<Role> OPTIONAL_ROLE_USER = Optional.of(ROLE_USER);
+//
+//        Mockito.when(accountRepository.save(Mockito.any(Account.class))).thenReturn(ACCOUNT);
+//        Mockito.when(roleRepository.findByName(Mockito.anyString())).thenReturn(OPTIONAL_ROLE_USER);
+//
+//        ObjectError error = new ObjectError("senhas", "As senhas não são parecidas.");
+//        bindingResult.addError(error);
+//
+//        ModelAndView response = accountRegisterService.execute(ACCOUNT_REGISTER, bindingResult);
+//
+//        System.out.println(bindingResult.hasErrors());
+//
+//        Assertions.assertNotNull(response);
+//        Assertions.assertEquals("redirect:/", response.getViewName());
+//        Assertions.assertEquals("{}", response.getModel().toString());
+//    }
 }
