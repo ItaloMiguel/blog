@@ -1,10 +1,10 @@
 RUN_DOCKERFILE = bash dockerfile/
 
 start-dev:
-	@bash utils/run-dev.sh
+	@bash scripts/run-dev.sh
 
 psql-dev:
-	@bash utils/psql-dev.sh
+	@bash scripts/psql-dev.sh
 
 
 start-prod:
@@ -15,22 +15,23 @@ build-dev:
 	@docker build dockerfile/web/
 
 run_application_with-h2:
-	@bash utils/run-h2.sh
+	@bash scripts/run-h2.sh
 
 stop:
-	@bash utils/stop.sh
+	@bash script/stop.sh
 
 chmod:
-	@chmod +x utils/*.sh
+	@chmod +x scripts/*.sh
 
 help:
 	@echo ""
 	@echo "Usage: make [COMMAND]"
 	@echo ""
 	@echo "Command:"
-	@echo "	chmod	 	Will give execute permission for .sh. Theses files are inside utils/ folder"
+	@echo "	chmod	 	Will give execute permission for .sh. Theses files are inside 'scripts/' folder"
 	@echo "	stop		Stop all docker-compose. Be careful."
 	@echo "	start-dev 	Start project with profile dev."
+	@echo ""
 	@echo " psql-dev	Connect to postgres. Password: root"
 	@echo "	build 		Build all dockerfile (nginx, spring-boot)... Don't working, sorry."
 	@echo ""
