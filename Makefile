@@ -18,7 +18,7 @@ run_application_with-h2:
 	@bash scripts/run-h2.sh
 
 stop:
-	@bash script/stop.sh
+	@bash scripts/stop.sh
 
 chmod:
 	@chmod +x scripts/*.sh
