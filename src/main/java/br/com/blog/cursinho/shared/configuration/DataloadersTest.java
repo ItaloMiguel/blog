@@ -13,15 +13,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
-@Profile("dev")
+@Profile("test")
 @Configuration
-public class DataloaderDev {
+public class DataloadersTest {
 
     private final RoleRepository roleRepository;
     private final AccountRepository accountRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public DataloaderDev(RoleRepository roleRepository, AccountRepository accountRepository, PasswordEncoder passwordEncoder) {
+    public DataloadersTest(RoleRepository roleRepository, AccountRepository accountRepository, PasswordEncoder passwordEncoder) {
         this.roleRepository = roleRepository;
         this.accountRepository = accountRepository;
         this.passwordEncoder = passwordEncoder;
@@ -29,11 +29,12 @@ public class DataloaderDev {
 
     @Bean
     public void onApplicationEvent() {
-        System.out.println("\n\n+++++++++ DATA LOADER DEV RUNNING ++++++++++++++++\n\n");
+        System.out.println("\n\n+++++++++ DATA LOADER TEST IS RUNNING ++++++++++++++++\n\n");
 
         createRoleIfNotExist(RoleType.ROLE_ADMIN.name());
         createRoleIfNotExist(RoleType.ROLE_USER.name());
 
+        this.createNewTestIfNotExist("ROLE_ADMIN");
     }
 
     @Transactional

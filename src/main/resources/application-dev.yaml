@@ -4,6 +4,7 @@ spring:
     username: postgres
     password: root
     url: jdbc:postgresql://${SPRING_DATASOURCE:localhost}:5432/cursinho
+    driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQL9Dialect
     hibernate:
