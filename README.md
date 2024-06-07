@@ -1,5 +1,5 @@
-# CURSINHO
-Um site estilo blog para postar todas as coisas que eu estudar dentro do pré-vestibular.
+# Estudos
+Um site estilo blog para postar todas as coisas que eu estudar. Foco princípal é física e computação.
 Link do site: [não existe]().
 
 ### Docs do projeto
