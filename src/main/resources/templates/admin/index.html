@@ -14,11 +14,6 @@
 <header th:replace="~{_header_search :: header_search}">
 
 </header>
-<div class="admin" sec:authorize="!isAuthenticated()">
-    <p>Olá random!</p>
-</div>
-<div class="user" sec:authorize="isAuthenticated()">
-    <p>Olá usuário!</p>
-</div>
+<p>Hello admin</p>
 </body>
 </html>

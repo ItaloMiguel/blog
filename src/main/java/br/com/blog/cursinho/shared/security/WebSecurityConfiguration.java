@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.core.GrantedAuthorityDefaults;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -27,6 +28,11 @@ public class WebSecurityConfiguration {
             "/about",
             "/app/search/**",
             "/app/home",
+            "/",
+    };
+
+    private static final String[] ADMIN_PAGES = {
+            "/app/admin/",
     };
 
     @Bean
@@ -34,6 +40,7 @@ public class WebSecurityConfiguration {
         http
                 .authorizeHttpRequests()
                 .requestMatchers(WHITELIST).permitAll()
+                .requestMatchers(ADMIN_PAGES).hasRole("ROLE_ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -45,7 +52,7 @@ public class WebSecurityConfiguration {
                 .and()
                 .httpBasic();
 
-//        http.csrf().disable();
+        http.csrf().disable();
         http.headers().frameOptions().disable();
 
         return http.build();

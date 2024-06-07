@@ -19,12 +19,11 @@
         <button type="button">Trocar o tema</button>
       </div>
       <div class="profile-photo">
-        <div class="photo" id="profile-photo" sec:authorize="!isAuthenticated()">
-        </div>
+        <div class="photo" id="profile-photo" sec:authorize="!isAuthenticated()"></div>
 
-        <!-- <div class="photo" sec:authorize="isAuthenticated()">
-            <img src="bob.jpg" alt="profile-photo">
-        </div> -->
+        <div class="photo" sec:authorize="isAuthenticated()">
+            <img src="#" alt="profile-photo">
+        </div>
       </div>
     </nav>
     
