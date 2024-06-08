@@ -15,36 +15,42 @@
     </div>
     <div class="search">
       <form th:action="@{app/search/item}" th:method="GET" role="search">
-        <input type="search" name="query" placeholder="Pesquisar...">
+          <label>
+              <input type="search" name="query" placeholder="Pesquisar...">
+          </label>
       </form>
     </div>
     <nav>
       <div id="change-theme" class="change-theme">
         <button type="button">Trocar o tema</button>
       </div>
-      <div class="dropdown" sec:authorize="!isAuthenticated()">
-<!--        <div class="photo" id="profile-photo" sec:authorize="!isAuthenticated()">-->
-<!--          <button class="dropbtn" id="dropbtn">Explore</button>-->
-<!--          <div class="dropdown-content" id="dropdown-content">-->
-<!--            <a href="#">Sign in</a>-->
-<!--            <a href="#">Sign up</a>-->
-<!--          </div>-->
-<!--        </div>-->
-          <button class="dropbtn" id="dropbtn">Explore</button>
-          <div class="dropdown-content" id="dropdown-content">
-            <a href="@{/app/logout}">Sing out</a>
-            <a href="@{/app/logout}">Sing out</a>
-            <a href="@{/app/logout}">Sing out</a>
-            <a href="@{/app/logout}">Sing out</a>
-            <a href="@{/app/logout}">Sing out</a>
-            <a href="@{/app/logout}">Sing out</a>
+
+      <div class="dropdown" sec:authorize="isAuthenticated()">
+          <button class="dropbtn" id="dropbtn-isAuthenticated">Explore</button>
+          <div class="dropdown-content" id="dropdown-content-isAuthenticated">
+              <a href="@{/app/logout}">Sing out</a>
+              <a href="@{/app/logout}">Sing out</a>
+              <a href="@{/app/logout}">Sing out</a>
+              <a href="@{/app/logout}">Sing out</a>
+              <a href="@{/app/logout}">Sing out</a>
+              <a href="@{/app/logout}">Sing out</a>
           </div>
+
+          <script th:src="@{/js/header/dropDownIsAuthenticated.js}"></script>
       </div>
+        <div class="dropdown" sec:authorize="!isAuthenticated()">
+            <button class="dropbtn" id="dropbtn-isNotAuthenticated">Explore</button>
+            <div class="dropdown-content" id="dropdown-content-isNotAuthenticated">
+                <a href="#">Sign in</a>
+                <a href="#">Sign up</a>
+            </div>
+
+            <script th:src="@{/js/header/dropDownIsNotAuthenticated.js}"></script>
+        </div>
     </nav>
     
 
     <script th:src="@{/js/header/changeTheme.js}"></script>
-    <script th:src="@{/js/header/dropDown.js}"></script>
   </header>
 
 </body>
