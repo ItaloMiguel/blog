@@ -52,11 +52,20 @@ header.light-mode {
   background-color: var(--white-theme-bg);
 }
 
-header .main-logo.dark-mode {
+header .main-logo .dark-mode {
   color: var(--dark-theme-letter);
 }
-header .main-logo.light-mode {
+header .main-logo .light-mode {
   color: var(--white-theme-letter);
+}
+
+header .main-logo .logo {
+  display: flex;
+}
+
+header .main-logo .logo:hover {
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 header .search input {

@@ -7,7 +7,11 @@
 <body>
   <header class="black" th:fragment="header_search">
     <div class="main-logo">
-      <h1>Cource</h1>
+      <div class="logo">
+        <h1 style="color: rgb(226, 216, 16);">Física </h1>
+        <a style="color: rgb(217, 19, 138)">&</a>
+        <h1 style="color: rgb(18, 164, 217)">Bytes</h1>
+      </div>
     </div>
     <div class="search">
       <form th:action="@{app/search/item}" th:method="GET" role="search">
@@ -18,12 +22,23 @@
       <div id="change-theme" class="change-theme">
         <button type="button">Trocar o tema</button>
       </div>
-      <div class="profile-photo">
-        <div class="photo" id="profile-photo" sec:authorize="!isAuthenticated()"></div>
-
-        <div class="photo" sec:authorize="isAuthenticated()">
-            <img src="#" alt="profile-photo">
-        </div>
+      <div class="dropdown" sec:authorize="!isAuthenticated()">
+<!--        <div class="photo" id="profile-photo" sec:authorize="!isAuthenticated()">-->
+<!--          <button class="dropbtn" id="dropbtn">Explore</button>-->
+<!--          <div class="dropdown-content" id="dropdown-content">-->
+<!--            <a href="#">Sign in</a>-->
+<!--            <a href="#">Sign up</a>-->
+<!--          </div>-->
+<!--        </div>-->
+          <button class="dropbtn" id="dropbtn">Explore</button>
+          <div class="dropdown-content" id="dropdown-content">
+            <a href="@{/app/logout}">Sing out</a>
+            <a href="@{/app/logout}">Sing out</a>
+            <a href="@{/app/logout}">Sing out</a>
+            <a href="@{/app/logout}">Sing out</a>
+            <a href="@{/app/logout}">Sing out</a>
+            <a href="@{/app/logout}">Sing out</a>
+          </div>
       </div>
     </nav>
     
@@ -31,17 +46,6 @@
     <script th:src="@{/js/header/changeTheme.js}"></script>
     <script th:src="@{/js/header/dropDown.js}"></script>
   </header>
-  <div class="container-profile">
-    <h1>TEST</h1>
-    <p>Test</p>
-    <p>Test</p>
-  </div>
-  <div class="container-test">
-    <h1>TEST</h1>
-    <p>Test</p>
-    <p>Test</p>
-  </div>
-
 
 </body>
 </html>
