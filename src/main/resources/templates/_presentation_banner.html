@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div class="presentation-banner" th:fragment="presentation_banner">
+  <div class="carousel-container" id="carousel-container">
+    <button class="prevBtn" id="prevBtn">&#10094;</button>
+    <div class="carousel-slides" id="carousel-slides">
+      <div class="carousel-slideBox"></div>
+    </div>
+    <button class="nextBtn" id="nextBtn">&#10095;</button>
+  </div>
+
+
+    <script type="module" th:src="@{/js/carousel/carousel.js}"></script>
+
+</div>
+</body>
+</html>

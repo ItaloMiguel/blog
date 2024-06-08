@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Container And Main Container */
+
+.container {
+    /* Coisas gerais sobre os textos */
+    font-family: "Poppins", sans-serif;
+    color: white;
+
+    /* Centralizar todas divs */
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* Coloração */
+}
+
+.main-header {
+    display: flex;
+
+    width: 100vw;
+    height: 5vh;
+
+    justify-content: space-around;
+    background-color: #322e2f;
+}
+
+.header-left {
+    display: flex;
+    justify-content: space-between;
+
+
+}
+
+.header-right {
+    background-color: brown;
+}
+
+.presentation-banner {
+    width: 80vw;
+    overflow: hidden;
+
+}
+
+.carousel-container {
+
+}
+
+.carousel-slides {
+    align-items: center;
+    background-color: #322e2f;
+
+}
+
+.carousel-slideBox {
+    width: 50vw;
+}
+
+.main-container {
+    background-color: white;
+}
+
+
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(230, 88, 88);
+}
+
+.carousel-slides {
+    background-color: #322e2f;
+    align-items: center;
+
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slideBox {
+    width: 50vw;
+}
+
+.prevBtn, .nextBtn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.prevBtn {
+    left: 10px;
+
+}
+
+.nextBtn {
+    right: 10px;
+}

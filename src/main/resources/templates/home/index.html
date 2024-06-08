@@ -10,12 +10,12 @@
     <link rel="stylesheet" th:href="@{/css/header/black.css}">
     <link rel="stylesheet" th:href="@{/css/header/white.css}">
     <link rel="stylesheet" th:href="@{/css/header/header.css}">
-
+    <link rel="stylesheet" th:href="@{/css/carousel/carousel.css}">
 </head>
 <body>
-<header th:replace="~{_header_search :: header_search}">
+<header th:replace="~{_header_search :: header_search}"></header>
+<div th:replace="~{_presentation_banner :: presentation_banner}"></div>
 
-</header>
 <div class="admin" sec:authorize="!isAuthenticated()">
     <p>Olá random!</p>
 </div>
