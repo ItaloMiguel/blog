@@ -3,12 +3,14 @@ RUN_DOCKERFILE = bash dockerfile/
 start-dev:
 	@bash scripts/run-dev.sh
 
-psql-dev:
-	@bash scripts/psql-dev.sh
-
+start-test:
+	@bash scripts/start_test.sh
 
 start-prod:
 	@echo "In production... ;)"
+
+psql-dev:
+	@bash scripts/psql-dev.sh
 
 build-dev:
 	@docker build dockerfile/nginx/
@@ -21,7 +23,8 @@ stop:
 	@bash scripts/stop.sh
 
 chmod:
-	@chmod +x scripts/*.sh
+	@chmod u+x scripts/*.sh
+	@chmod u+x target/**
 
 help:
 	@echo ""
