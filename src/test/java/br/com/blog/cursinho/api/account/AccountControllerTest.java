@@ -52,85 +52,84 @@ class AccountControllerTest {
         );
     }
 
-//    @Test
-//    void shouldReturn200AndSuccessfully() throws Exception {
-//        String fistNameParam = "firstName";
-//        String emailParam = "email";
-//
-//        mockMvc.perform(get("/authenticate"))
-//                .andDo(print())
-//                .andExpect(status().isOk())
-//                .andExpect(view().name("auth/authenticate"))
-//                .andExpect(model().attributeExists("accountRegister"));
-//    }
-//
-//    @Test
-//    void shouldRegisterAccountInSystem() throws Exception {
-//        var account = new AccountRegisterForm(
-//                "email@email.com",
-//                "password",
-//                "password",
-//                "lastName",
-//                "lastName"
-//        );
-//
-//        var requestBuilder = post("/signup")
-//                .param("firstName", account.getFirstName())
-//                .param("lastName", account.getLastName())
-//                .param("email", account.getEmail())
-//                .param("password", account.getPassword())
-//                .param("confirmPassword", account.getConfirmPassword())
-//                .with(csrf());
-//
-//        mockMvc.perform(requestBuilder)
-//                .andDo(print())
-//                .andExpect(status().is2xxSuccessful());
-//    }
-//
-//    @Test
-//    void shouldNotRegisterAccountInSystemBecausePasswordIsNotEquals() throws Exception {
-//        var account = new AccountRegisterForm(
-//                "email@email.com",
-//                "password",
-//                "password1",
-//                "lastName",
-//                "lastName"
-//        );
-//
-//
-//        var requestBuilder = post("/signup")
-//                .param("firstName", account.getFirstName())
-//                .param("lastName", account.getLastName())
-//                .param("email", account.getEmail())
-//                .param("password", account.getPassword())
-//                .param("confirmPassword", account.getConfirmPassword())
-//                .with(csrf());
-//
-//        mockMvc.perform(requestBuilder)
-//                .andDo(print())
-//                .andExpect(status().is2xxSuccessful());
-//    }
-//
-//    @Test
-//    void shouldNotRegisterAccountInSystemBecauseEmailInstBeingSentAndPasswordNotEquals() throws Exception {
-//        var account = new AccountRegisterForm(
-//                null,
-//                "password",
-//                "password1",
-//                "lastName",
-//                "lastName"
-//        );
-//
-//
-//        var requestBuilder = post("/signup")
-//                .param("firstName", account.getFirstName())
-//                .param("lastName", account.getLastName())
-//                .param("email", account.getEmail())
-//                .param("password", account.getPassword())
-//                .param("confirmPassword", account.getConfirmPassword())
-//                .with(csrf());
-//        mockMvc.perform(requestBuilder)
-//                .andDo(print())
-//                .andExpect(status().is2xxSuccessful());
-//    }
+    @Test
+    void shouldReturn200AndSuccessfully() throws Exception {
+        String fistNameParam = "firstName";
+        String emailParam = "email";
+
+        mockMvc.perform(get("/app/signin"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(view().name("auth/signin"));
+    }
+
+    @Test
+    void shouldRegisterAccountInSystem() throws Exception {
+        var account = new AccountRegisterForm(
+                "email@email.com",
+                "password",
+                "password",
+                "lastName",
+                "lastName"
+        );
+
+        var requestBuilder = post("/app/signup")
+                .param("firstName", account.getFirstName())
+                .param("lastName", account.getLastName())
+                .param("email", account.getEmail())
+                .param("password", account.getPassword())
+                .param("confirmPassword", account.getConfirmPassword())
+                .with(csrf());
+
+        mockMvc.perform(requestBuilder)
+                .andDo(print())
+                .andExpect(status().is2xxSuccessful());
+    }
+
+    @Test
+    void shouldNotRegisterAccountInSystemBecausePasswordIsNotEquals() throws Exception {
+        var account = new AccountRegisterForm(
+                "email@email.com",
+                "password",
+                "password1",
+                "lastName",
+                "lastName"
+        );
+
+
+        var requestBuilder = post("/app/signup")
+                .param("firstName", account.getFirstName())
+                .param("lastName", account.getLastName())
+                .param("email", account.getEmail())
+                .param("password", account.getPassword())
+                .param("confirmPassword", account.getConfirmPassword())
+                .with(csrf());
+
+        mockMvc.perform(requestBuilder)
+                .andDo(print())
+                .andExpect(status().is2xxSuccessful());
+    }
+
+    @Test
+    void shouldNotRegisterAccountInSystemBecauseEmailInstBeingSentAndPasswordNotEquals() throws Exception {
+        var account = new AccountRegisterForm(
+                null,
+                "password",
+                "password1",
+                "lastName",
+                "lastName"
+        );
+
+
+        var requestBuilder = post("/app/signup")
+                .param("firstName", account.getFirstName())
+                .param("lastName", account.getLastName())
+                .param("email", account.getEmail())
+                .param("password", account.getPassword())
+                .param("confirmPassword", account.getConfirmPassword())
+                .with(csrf());
+        mockMvc.perform(requestBuilder)
+                .andDo(print())
+                .andExpect(status().is2xxSuccessful());
+    }
 }

@@ -50,46 +50,46 @@ class UserDetailsServiceImplTest {
                 .build();
     }
 
-//    @Test
-//    void shouldReturnSuccessfullyAndLogin() {
-//        var OPTIONAL_ACCOUNT = Optional.of(ACCOUNT);
-//
-//        Mockito.when(repository.findByEmail(Mockito.any(String.class))).thenReturn(OPTIONAL_ACCOUNT);
-//
-//        var response = service.loadUserByUsername("email@email.com");
-//
-//        Assertions.assertNotNull(response);
-//        Assertions.assertNotNull(response.getAuthorities());
-//
-//        // ALWAYS RETURNS TRUE.
-//        Assertions.assertTrue(response.isEnabled());
-//        Assertions.assertTrue(response.isAccountNonExpired());
-//        Assertions.assertTrue(response.isAccountNonLocked());
-//        Assertions.assertTrue(response.isCredentialsNonExpired());
-//
-//        // USER INFORMATION
-//        Assertions.assertEquals(ACCOUNT.getAuthorities(), response.getAuthorities());
-//        Assertions.assertEquals(ACCOUNT.getUsername(), response.getUsername());
-//        Assertions.assertEquals(ACCOUNT.getPassword(), response.getPassword());
-//
-//        Mockito.verify(repository, Mockito.times(1)).findByEmail("email@email.com");
-//    }
-//
-//    @Test
-//    void shouldReturnErrorEmailNotFound() {
-//        Optional<Account> EMPTY = Optional.empty();
-//
-//        Mockito.when(repository.findByEmail(Mockito.any(String.class))).thenReturn(EMPTY);
-//
-//        try {
-//            var response = service.loadUserByUsername("email@email.com");
-//
-//        } catch (Exception exception) {
-//            Assertions.assertNotNull(exception);
-//            Assertions.assertEquals(UsernameNotFoundException.class, exception.getClass());
-//            Assertions.assertEquals("Email " + ACCOUNT.getEmail() + " not found", exception.getMessage());
-//        }
-//
-//        Mockito.verify(repository, Mockito.times(1)).findByEmail("email@email.com");
-//    }
+    @Test
+    void shouldReturnSuccessfullyAndLogin() {
+        var OPTIONAL_ACCOUNT = Optional.of(ACCOUNT);
+
+        Mockito.when(repository.findByEmail(Mockito.any(String.class))).thenReturn(OPTIONAL_ACCOUNT);
+
+        var response = service.loadUserByUsername("email@email.com");
+
+        Assertions.assertNotNull(response);
+        Assertions.assertNotNull(response.getAuthorities());
+
+        // ALWAYS RETURNS TRUE.
+        Assertions.assertTrue(response.isEnabled());
+        Assertions.assertTrue(response.isAccountNonExpired());
+        Assertions.assertTrue(response.isAccountNonLocked());
+        Assertions.assertTrue(response.isCredentialsNonExpired());
+
+        // USER INFORMATION
+        Assertions.assertEquals(ACCOUNT.getAuthorities(), response.getAuthorities());
+        Assertions.assertEquals(ACCOUNT.getUsername(), response.getUsername());
+        Assertions.assertEquals(ACCOUNT.getPassword(), response.getPassword());
+
+        Mockito.verify(repository, Mockito.times(1)).findByEmail("email@email.com");
+    }
+
+    @Test
+    void shouldReturnErrorEmailNotFound() {
+        Optional<Account> EMPTY = Optional.empty();
+
+        Mockito.when(repository.findByEmail(Mockito.any(String.class))).thenReturn(EMPTY);
+
+        try {
+            var response = service.loadUserByUsername("email@email.com");
+
+        } catch (Exception exception) {
+            Assertions.assertNotNull(exception);
+            Assertions.assertEquals(UsernameNotFoundException.class, exception.getClass());
+            Assertions.assertEquals("Email " + ACCOUNT.getEmail() + " not found", exception.getMessage());
+        }
+
+        Mockito.verify(repository, Mockito.times(1)).findByEmail("email@email.com");
+    }
 }
