@@ -79,7 +79,7 @@ class AccountRegisterServiceTest {
         System.out.println(bindingResult.hasErrors());
 
         Assertions.assertNotNull(response);
-        Assertions.assertEquals("redirect:/app/signin", response.getViewName());
-        Assertions.assertEquals("{}", response.getModel().toString());
+        Assertions.assertEquals("redirect:/", response.getViewName());
+        Assertions.assertEquals("{accountLoginForm=AccountLoginForm(email=email@email.com, password=password)}", response.getModel().toString());
     }
 }

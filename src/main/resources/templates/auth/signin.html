@@ -21,15 +21,15 @@
 <header th:replace="~{_header_search :: header_search}"></header>
 <div class="form-container">
   <!-- SIGN IN FORM -->
-  <form th:method="POST" th:action="@{/app/signin}">
+  <form th:method="POST" th:object="${accountLoginForm}" th:action="@{/app/signin}">
     <h2 class="title">Entrar</h2>
     <div class="input-field">
       <i class="fas fa-user"></i>
-      <input id="email" name="email" type="email" placeholder="Email" />
+      <input id="email" name="email" type="email" th:field="*{email}" placeholder="Email" />
     </div>
     <div class="input-field">
       <i class="fas fa-lock"></i>
-      <input id="password" name="password" type="password" placeholder="Senha" />
+      <input id="password" name="password" type="password" th:field="*{password}" placeholder="Senha" />
     </div>
     <input type="submit" value="Login" class="btn solid" />
     <p class="social-text">Ou entrar com sua rede-social (Não funciona.)</p>

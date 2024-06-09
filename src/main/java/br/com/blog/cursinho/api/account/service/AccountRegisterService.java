@@ -1,6 +1,7 @@
 package br.com.blog.cursinho.api.account.service;
 
 import br.com.blog.cursinho.api.account.AccountFactory;
+import br.com.blog.cursinho.api.account.AccountLoginForm;
 import br.com.blog.cursinho.api.account.AccountRegisterForm;
 import br.com.blog.cursinho.api.account.AccountRepository;
 import br.com.blog.cursinho.api.role.RoleRepository;
@@ -39,13 +40,17 @@ public class AccountRegisterService {
             return modelAndView;
         }
 
-        this.saveAccount(accountRegisterForm);
+        Account account = this.saveAccount(accountRegisterForm);
+        AccountLoginForm accountLoginForm = new AccountLoginForm(account.getEmail(), account.getPassword());
 
-        return new ModelAndView("redirect:/app/signin");
+        ModelAndView modelAndView = new ModelAndView("redirect:/");
+        modelAndView.addObject("accountLoginForm", accountLoginForm);
+
+        return modelAndView;
     }
 
     @Transactional
-    private void saveAccount(AccountRegisterForm accountDTO) {
+    private Account saveAccount(AccountRegisterForm accountDTO) {
         log.info("Save account in the database");
 
         Account account = new AccountFactory(accountDTO)
@@ -53,7 +58,7 @@ public class AccountRegisterService {
                 .makeUser(roleRepository)
                 .build();
 
-        accountRepository.save(account);
+        return accountRepository.save(account);
     }
 
     private void passwordIsEquals(AccountRegisterForm accountDto, BindingResult bindingResult) {
