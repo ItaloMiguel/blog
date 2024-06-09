@@ -36,6 +36,8 @@ class AccountRegisterServiceTest {
 
     @Mock
     private BindingResult bindingResult;
+    @Mock
+    private AccountLoginService accountLoginService;
 
     private Account ACCOUNT;
     private Role ROLE_USER;
@@ -79,7 +81,7 @@ class AccountRegisterServiceTest {
         System.out.println(bindingResult.hasErrors());
 
         Assertions.assertNotNull(response);
-        Assertions.assertEquals("redirect:/", response.getViewName());
+        Assertions.assertEquals("auth/signin", response.getViewName());
         Assertions.assertEquals("{accountLoginForm=AccountLoginForm(email=email@email.com, password=password)}", response.getModel().toString());
     }
 }

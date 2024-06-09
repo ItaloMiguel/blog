@@ -1,6 +1,9 @@
 package br.com.blog.cursinho.api.account.service;
 
 import br.com.blog.cursinho.api.account.AccountRepository;
+import br.com.blog.cursinho.shared.domain.Account;
+import br.com.blog.cursinho.shared.domain.UserAuthenticate;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -17,8 +20,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return accountRepository.findByEmail(email)
+        Account account = accountRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("Email " + email + " not found"));
+        return new UserAuthenticate(account);
     }
 
 }

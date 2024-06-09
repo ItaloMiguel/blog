@@ -27,26 +27,23 @@ public class AccountRegisterService {
 
     private final AccountRepository accountRepository;
     private final RoleRepository roleRepository;
+    private final AccountLoginService accountLoginService;
 
 
     public ModelAndView execute(AccountRegisterForm accountRegisterForm, BindingResult bindingResult) {
         this.passwordIsEquals(accountRegisterForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
-            ModelAndView modelAndView = new ModelAndView("redirect:/app/signup");
-
-            modelAndView.addObject("account", accountRegisterForm);
-
-            return modelAndView;
+            return new ModelAndView("redirect:/app/signup")
+                    .addObject("accountRegisterForm", accountRegisterForm);
         }
 
         Account account = this.saveAccount(accountRegisterForm);
         AccountLoginForm accountLoginForm = new AccountLoginForm(account.getEmail(), account.getPassword());
 
-        ModelAndView modelAndView = new ModelAndView("redirect:/");
-        modelAndView.addObject("accountLoginForm", accountLoginForm);
+        ModelAndView execute = accountLoginService.execute(accountLoginForm, bindingResult);
 
-        return modelAndView;
+        return new ModelAndView("auth/signin").addObject("accountLoginForm", accountLoginForm);
     }
 
     @Transactional

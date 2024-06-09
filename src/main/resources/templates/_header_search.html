@@ -28,12 +28,7 @@
       <div class="dropdown" sec:authorize="isAuthenticated()">
           <button class="dropbtn" id="dropbtn-isAuthenticated">Explore</button>
           <div class="dropdown-content" id="dropdown-content-isAuthenticated">
-              <a href="@{/app/logout}">Sing out</a>
-              <a href="@{/app/logout}">Sing out</a>
-              <a href="@{/app/logout}">Sing out</a>
-              <a href="@{/app/logout}">Sing out</a>
-              <a href="@{/app/logout}">Sing out</a>
-              <a href="@{/app/logout}">Sing out</a>
+              <a th:href="@{/app/logout}">Logout</a>
           </div>
 
           <script th:src="@{/js/header/dropDownIsAuthenticated.js}"></script>
@@ -41,8 +36,8 @@
         <div class="dropdown" sec:authorize="!isAuthenticated()">
             <button class="dropbtn" id="dropbtn-isNotAuthenticated">Explore</button>
             <div class="dropdown-content" id="dropdown-content-isNotAuthenticated">
-                <a href="#">Sign in</a>
-                <a href="#">Sign up</a>
+                <a th:href="@{/app/signin}">Sign-in</a>
+                <a th:href="@{/app/signup}">Sign-up</a>
             </div>
 
             <script th:src="@{/js/header/dropDownIsNotAuthenticated.js}"></script>

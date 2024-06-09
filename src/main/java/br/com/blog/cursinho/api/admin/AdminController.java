@@ -10,8 +10,12 @@ import org.springframework.web.servlet.ModelAndView;
 public class AdminController {
 
     @GetMapping("/app/admin")
-
-    public ModelAndView getAboutPageView() {
+    public ModelAndView getAdminView() {
         return new ModelAndView("admin/index");
+    }
+
+    @GetMapping("/app/posts")
+    public ModelAndView getPostsView() {
+        return new ModelAndView("admin/posts");
     }
 }

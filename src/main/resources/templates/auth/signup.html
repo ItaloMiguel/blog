@@ -22,7 +22,7 @@
 
 <div class="form-container">
     <!-- SIGN IN FORM -->
-    <form th:action="@{/signup}" th:object="${accountRegister}" th:method="POST">
+    <form th:action="@{/app/signup}" th:object="${accountRegisterForm}" th:method="POST">
         <h2 class="title">Registrar-se</h2>
         <div class="input-field">
             <p  th:if="${#fields.hasErrors('firstName')}"></p>
@@ -37,7 +37,7 @@
             <input type="text" th:field="*{lastName}" placeholder="Sobrenome (optional)" />
         </div>
         <div class="input-field">
-            <p  th:if="${#fields.hasErrors('${accountRegister.email}')}" th:errors="*{accountRegister.email}"></p>
+            <p  th:if="${#fields.hasErrors('${accountRegisterForm.email}')}" th:errors="*{accountRegisterForm.email}"></p>
 
             <i class="fas fa-envelope"></i>
             <input type="email" th:field="*{email}" placeholder="Email" />

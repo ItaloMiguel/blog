@@ -32,7 +32,11 @@ public class WebSecurityConfiguration {
     };
 
     private static final String[] ADMIN_PAGES = {
-            "/app/admin/",
+            "/app/admin**/",
+    };
+
+    private static final String[] ADMIN_AND_USER_PAGES = {
+            "/app/posts/**"
     };
 
     @Bean
