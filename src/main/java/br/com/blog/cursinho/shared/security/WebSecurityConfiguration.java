@@ -32,11 +32,12 @@ public class WebSecurityConfiguration {
     };
 
     private static final String[] ADMIN_PAGES = {
-            "/app/admin**/",
+            "/app/admin",
+            "/app/admin/**",
     };
 
     private static final String[] ADMIN_AND_USER_PAGES = {
-            "/app/posts/**"
+            "/app/admin/posts/**"
     };
 
     @Bean
@@ -44,7 +45,7 @@ public class WebSecurityConfiguration {
         http
                 .authorizeHttpRequests()
                 .requestMatchers(WHITELIST).permitAll()
-                .requestMatchers(ADMIN_PAGES).hasRole("ROLE_ADMIN")
+                .requestMatchers(ADMIN_PAGES).hasAuthority("ROLE_ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

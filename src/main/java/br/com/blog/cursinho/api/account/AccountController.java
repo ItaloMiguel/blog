@@ -30,9 +30,6 @@ public class AccountController {
     public ModelAndView getSigninView() {
         log.info("[GET] Get signin view.");
 
-        System.out.println("CARALHO ISSO TA SENDO CHAMADOOOO 3 VEZES POR QUE CARALHOOOOOOOOOOOO??????????");
-
-
         AccountLoginForm accountLoginForm = new AccountLoginForm();
 
         return new ModelAndView("auth/signin")
