@@ -9,12 +9,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.math.BigInteger;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Entity
+@Entity(name = "tb_account")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -25,7 +26,8 @@ public class Account implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "id", columnDefinition = "BIGINT")
+    private BigInteger id;
 
     @NotNull
     @NotBlank
@@ -39,15 +41,16 @@ public class Account implements UserDetails {
 
     @NotNull
     @NotBlank
-    @Column(unique = true)
+    @Column(name = "first_name", unique = true)
     private String firstName;
 
+    @Column(name = "last_name")
     private String lastName;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "users_role",
-            joinColumns = {@JoinColumn(name = "account_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "role_name", referencedColumnName = "name")})
+    @JoinTable(name = "tb_account_role",
+            joinColumns = {@JoinColumn(name = "tb_account_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "tb_role_name", referencedColumnName = "name")})
     private Set<Role> roles = new HashSet<>();
 
     public Account(String firstName, String lastName, String email, String password, Role roleModel) {
@@ -75,7 +78,7 @@ public class Account implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.firstName + " " + this.lastName;
+        return this.email;
     }
 
     // always needs to be true if there are no business rules

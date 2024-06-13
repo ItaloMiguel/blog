@@ -1,5 +1,6 @@
 package br.com.blog.cursinho.shared.security;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -29,6 +30,12 @@ public class WebSecurityConfiguration {
             "/app/search/**",
             "/app/home",
             "/",
+    };
+
+    @Value("${spring.profiles.active=test}")
+    private static final String[] WHITELIST_TEST = {
+            "h2/",
+            "h2/**"
     };
 
     private static final String[] ADMIN_PAGES = {

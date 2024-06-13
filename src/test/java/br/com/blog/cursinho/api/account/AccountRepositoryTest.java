@@ -1,38 +1,38 @@
 package br.com.blog.cursinho.api.account;
 
+import br.com.blog.cursinho.CursinhoApplication;
 import br.com.blog.cursinho.shared.domain.Account;
 import br.com.blog.cursinho.shared.domain.Role;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.util.Assert;
 
+import java.math.BigInteger;
 import java.util.Optional;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-@DataJpaTest
-@AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
+@SpringBootTest(classes = CursinhoApplication.class)
+@AutoConfigureMockMvc
 class AccountRepositoryTest {
 
     @Autowired
-    private AccountRepository repository;
+    private AccountRepository accountRepository;
 
     private Role ROLE_USER;
 
     private Account FELIZARDO;
 
+
     @BeforeEach
     void setupBefore() {
         // Arrange
         ROLE_USER = Role.builder()
-                .id(1L)
+                .id(BigInteger.valueOf(1))
                 .name("ROLE_USER")
                 .build();
 
@@ -44,22 +44,29 @@ class AccountRepositoryTest {
                 .firstName("da Silva")
                 .password("password")
                 .build();
+
     }
 
     @Test
     void saveAccount_ReturnAccountSaved() {
-        Account accountReturn = repository.save(FELIZARDO);
+        Account accountReturn = accountRepository.save(FELIZARDO);
 
         Assertions.assertThat(accountReturn).isNotNull();
-        Assertions.assertThat(accountReturn.getId()).isGreaterThanOrEqualTo(1);
+        Assertions.assertThat(accountReturn.getId()).isGreaterThanOrEqualTo(BigInteger.valueOf(1));
+    }
+
+    @Test
+    public void testFindByEmail() {
+        Optional<Account> account = accountRepository.findByEmail("user1@example.com");
+        Assert.isTrue(account.isPresent(), "Account should be found");
     }
 
     @Test
     void shouldntSaveAccount_BecauseAlreadyExists_ReturnError() {
-        repository.save(FELIZARDO);
+        accountRepository.save(FELIZARDO);
 
         try {
-            repository.save(FELIZARDO);
+            accountRepository.save(FELIZARDO);
         } catch (Exception exception) {
             org.junit.jupiter.api.Assertions.assertNotNull(exception);
             org.junit.jupiter.api.Assertions.assertNull(exception.getMessage());
@@ -68,8 +75,8 @@ class AccountRepositoryTest {
 
     @Test
     void findByEmail_ReturnAccount() {
-        repository.save(FELIZARDO);
-        Optional<Account> accountReturn = repository.findByEmail(FELIZARDO.getEmail());
+        accountRepository.save(FELIZARDO);
+        Optional<Account> accountReturn = accountRepository.findByEmail(FELIZARDO.getEmail());
 
         Assertions.assertThat(accountReturn).isNotNull();
         Assertions.assertThat(accountReturn.get().getId()).isNotNull();
@@ -91,7 +98,7 @@ class AccountRepositoryTest {
 
     @Test
     void findByEmail_ReturnEmpty() {
-        Optional<Account> accountReturn = repository.findByEmail(FELIZARDO.getEmail());
+        Optional<Account> accountReturn = accountRepository.findByEmail(FELIZARDO.getEmail());
 
         Assertions.assertThat(accountReturn).isEmpty();
     }
