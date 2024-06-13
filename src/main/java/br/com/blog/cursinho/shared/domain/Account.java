@@ -41,9 +41,10 @@ public class Account implements UserDetails {
 
     @NotNull
     @NotBlank
-    @Column(unique = true)
+    @Column(name = "first_name", unique = true)
     private String firstName;
 
+    @Column(name = "last_name")
     private String lastName;
 
     @ManyToMany(fetch = FetchType.EAGER)

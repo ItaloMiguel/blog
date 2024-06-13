@@ -1,5 +1,6 @@
 package br.com.blog.cursinho.api.account;
 
+import br.com.blog.cursinho.CursinhoApplication;
 import br.com.blog.cursinho.api.account.service.AccountRegisterService;
 import br.com.blog.cursinho.shared.domain.Account;
 import br.com.blog.cursinho.shared.domain.Role;
@@ -26,10 +27,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@SpringBootTest
+@SpringBootTest(classes = CursinhoApplication.class)
 @AutoConfigureMockMvc
 @Import(WebSecurityConfiguration.class)
-@Sql(scripts = "/data-h2.sql")
 class AccountControllerTest {
 
     @Autowired
