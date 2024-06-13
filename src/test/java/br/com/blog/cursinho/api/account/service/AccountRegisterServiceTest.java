@@ -18,6 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.math.BigInteger;
 import java.util.Optional;
 import java.util.Set;
 
@@ -45,12 +46,12 @@ class AccountRegisterServiceTest {
     @BeforeEach
     void setUp() {
         ROLE_USER = Role.builder()
-                .id(1L)
+                .id(BigInteger.valueOf(1))
                 .name("ROLE_USER")
                 .build();
 
         ACCOUNT = Account.builder()
-                .id(1L)
+                .id(BigInteger.valueOf(1))
                 .email("email@email.com")
                 .password("password")
                 .firstName("firstName")

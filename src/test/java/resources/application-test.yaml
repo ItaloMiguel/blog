@@ -6,11 +6,13 @@ server.port: 8081
 spring:
   web.locale: pt_BR
 
+  # CONFIG PATH DATA.SQL
   sql:
     init:
       mode: always
       data-locations: data-h2.sql
 
+  # H2 PATH
   h2:
     console:
       enabled: true

@@ -12,6 +12,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import java.math.BigInteger;
 import java.util.Optional;
 import java.util.Set;
 
@@ -36,12 +37,12 @@ class UserDetailsServiceImplTest {
         service = new UserDetailsServiceImpl(repository);
 
         ROLE_USER = Role.builder()
-                .id(1L)
+                .id(BigInteger.valueOf(1))
                 .name("ROLE_USER")
                 .build();
 
         ACCOUNT = Account.builder()
-                .id(1L)
+                .id(BigInteger.valueOf(1))
                 .email("email@email.com")
                 .password("password")
                 .firstName("firstName")

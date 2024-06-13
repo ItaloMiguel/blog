@@ -7,13 +7,17 @@ import br.com.blog.cursinho.shared.security.WebSecurityConfiguration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.math.BigInteger;
 import java.util.Set;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -23,9 +27,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
-@TestPropertySource(properties = {"DB_NAME=myblog_test","spring.jpa.hibernate.ddlAuto:create-drop"})
 @AutoConfigureMockMvc
 @Import(WebSecurityConfiguration.class)
+@Sql(scripts = "/data-h2.sql")
 class AccountControllerTest {
 
     @Autowired
@@ -40,10 +44,10 @@ class AccountControllerTest {
 
     @BeforeEach
     void setup() {
-        ROLE_USER = new Role(1L, "ROLE_USER");
+        ROLE_USER = new Role(BigInteger.valueOf(1), "ROLE_USER");
 
         USER_MODEL = new Account(
-                1L,
+                BigInteger.valueOf(1),
                 "email@email.com",
                 "password",
                 "firstName",
