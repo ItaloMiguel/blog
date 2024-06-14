@@ -23,7 +23,7 @@ spring:
     # HIBERNATE CONFIGURATION YAML
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
       jpa.show-sql: true
       format_sql: true
 
