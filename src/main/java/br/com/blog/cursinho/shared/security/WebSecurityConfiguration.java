@@ -39,8 +39,11 @@ public class WebSecurityConfiguration {
             "/app/admin/**",
     };
 
-    private static final String[] ADMIN_AND_USER_PAGES = {
-            "/app/admin/posts/**"
+    private static final String[] PATH = {
+            "resources/**",
+            "templates/**",
+            "/css/**",
+            "/js/**"
     };
 
     @Bean
@@ -51,6 +54,7 @@ public class WebSecurityConfiguration {
                 * Tenha cuidado para mexer aqui!
                 * */
                 .authorizeHttpRequests((authorize) -> authorize
+                        .requestMatchers(PATH).permitAll()
                         .requestMatchers(WHITELIST).permitAll()
                         .requestMatchers(ADMIN_PAGES).hasAuthority("ROLE_ADMIN")
                         .anyRequest().authenticated()
@@ -71,11 +75,6 @@ public class WebSecurityConfiguration {
         http.headers().frameOptions().disable();
 
         return http.build();
-    }
-
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("templates/**", "/css/**", "/js/**");
     }
 
 }

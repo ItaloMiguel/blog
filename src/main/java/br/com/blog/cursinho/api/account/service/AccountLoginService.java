@@ -21,12 +21,7 @@ public class AccountLoginService {
 
     private final UserDetailsServiceImpl userDetailsService;
 
-    public ModelAndView execute(AccountLoginForm accountLoginForm, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return new ModelAndView("redirect:/app/signup")
-                    .addObject("account", accountLoginForm);
-        }
-
+    public ModelAndView execute(AccountLoginForm accountLoginForm) {
         userDetailsService.loadUserByUsername(accountLoginForm.getEmail());
         return new ModelAndView("redirect:/");
     }

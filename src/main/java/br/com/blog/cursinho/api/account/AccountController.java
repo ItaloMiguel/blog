@@ -41,7 +41,16 @@ public class AccountController {
                                        BindingResult bindingResult) {
         log.info("[POST] Post signin view.");
 
-        return accountLoginService.execute(accountLoginForm, bindingResult);
+        if (bindingResult.hasErrors()) {
+            log.error("Validation errors: " + bindingResult.getAllErrors());
+            return new ModelAndView("auth/signin")
+                    .addObject("accountLoginForm", accountLoginForm)
+                    .addObject("errors", bindingResult.getAllErrors());
+        }
+
+        log.info("INFO USER: " + accountLoginForm);
+
+        return accountLoginService.execute(accountLoginForm);
     }
 
     @GetMapping("/signup")
@@ -57,7 +66,6 @@ public class AccountController {
     @PostMapping("/signup")
     public ModelAndView sendRegisterView(@ModelAttribute @Valid AccountRegisterForm accountRegisterForm, BindingResult bindingResult) {
         log.info("[POST] Receiving registration request.");
-
         return accountRegisterService.execute(accountRegisterForm, bindingResult);
     }
 
