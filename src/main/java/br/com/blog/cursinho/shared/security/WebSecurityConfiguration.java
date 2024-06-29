@@ -14,6 +14,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
@@ -32,12 +34,6 @@ public class WebSecurityConfiguration {
             "/",
     };
 
-    @Value("${spring.profiles.active=test}")
-    private static final String[] WHITELIST_TEST = {
-            "h2/",
-            "h2/**"
-    };
-
     private static final String[] ADMIN_PAGES = {
             "/app/admin",
             "/app/admin/**",
@@ -50,18 +46,25 @@ public class WebSecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests()
-                .requestMatchers(WHITELIST).permitAll()
-                .requestMatchers(ADMIN_PAGES).hasAuthority("ROLE_ADMIN")
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/app/signin")
-                .usernameParameter("email")
-                .defaultSuccessUrl("/", true).failureUrl("/app/signin?error").permitAll()
-                .and()
-                .logout().logoutUrl("/app/logout").logoutSuccessUrl("/app/signin?logout")
-                .and()
+                /*
+                * Essa parte é utilizada para liberar novos cominhos de requisição.
+                * Tenha cuidado para mexer aqui!
+                * */
+                .authorizeHttpRequests((authorize) -> authorize
+                        .requestMatchers(WHITELIST).permitAll()
+                        .requestMatchers(ADMIN_PAGES).hasAuthority("ROLE_ADMIN")
+                        .anyRequest().authenticated()
+                )
+                .formLogin((loginConfigurer) -> loginConfigurer
+                        .loginPage("/app/signin")
+                        .usernameParameter("email")
+                        .defaultSuccessUrl("/", true)
+                        .failureUrl("/app/signin?error").permitAll()
+                )
+                .logout((logoutConfigurer) -> logoutConfigurer
+                        .logoutUrl("/app/logout")
+                        .logoutSuccessUrl("/app/signin?logout")
+                )
                 .httpBasic();
 
         http.csrf().disable();
@@ -72,7 +75,7 @@ public class WebSecurityConfiguration {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**","/vendor/**","/fonts/**");
+        return (web) -> web.ignoring().requestMatchers("templates/**", "/css/**", "/js/**");
     }
 
 }
