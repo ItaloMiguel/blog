@@ -10,9 +10,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class AccountFactory {
-
-    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
     private final Account account = new Account();
 
     public AccountFactory(AccountRegisterForm accountDTO) {
@@ -21,11 +18,6 @@ public class AccountFactory {
         account.setPassword(accountDTO.getPassword());
 
         this.lastNameConfirm(accountDTO.getLastName());
-    }
-
-    public AccountFactory setPasswordEncoder() {
-        account.setPassword(passwordEncoder.encode(account.getPassword()));
-        return this;
     }
 
     public AccountFactory makeUser(RoleRepository roleRepository) {

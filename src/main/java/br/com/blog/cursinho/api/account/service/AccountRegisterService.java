@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Slf4j
 @Service
@@ -33,7 +34,7 @@ public class AccountRegisterService {
     public ModelAndView execute(AccountRegisterForm accountRegisterForm, BindingResult bindingResult) {
         this.passwordIsEquals(accountRegisterForm, bindingResult);
 
-        if (bindingResult.hasErrors()) {
+        if (!(bindingResult.getAllErrors().size() > 0)) {
             return new ModelAndView("redirect:/app/signup")
                     .addObject("accountRegisterForm", accountRegisterForm);
         }
@@ -51,18 +52,17 @@ public class AccountRegisterService {
         log.info("Save account in the database");
 
         Account account = new AccountFactory(accountDTO)
-                .setPasswordEncoder()
                 .makeUser(roleRepository)
                 .build();
 
         return accountRepository.save(account);
     }
 
-    private void passwordIsEquals(AccountRegisterForm accountDto, BindingResult bindingResult) {
+    private void passwordIsEquals(AccountRegisterForm accountRegisterForm, BindingResult bindingResult) {
         log.info("Checking if password and confirmPassword is equals");
 
-        var password = accountDto.getPassword();
-        var confirmPassword = accountDto.getConfirmPassword();
+        String password = accountRegisterForm.getPassword();
+        String confirmPassword = accountRegisterForm.getConfirmPassword();
 
         if(!password.equals(confirmPassword)) {
             ObjectError error = new ObjectError("password", "As senhas não são parecidas.");

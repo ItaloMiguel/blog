@@ -32,11 +32,12 @@ class AccountRegisterServiceTest {
 
     @Mock
     private AccountRepository accountRepository;
+
     @Mock
     private RoleRepository roleRepository;
 
-    @Mock
     private BindingResult bindingResult;
+
     @Mock
     private AccountLoginService accountLoginService;
 
@@ -79,10 +80,26 @@ class AccountRegisterServiceTest {
 
         ModelAndView response = accountRegisterService.execute(ACCOUNT_REGISTER, bindingResult);
 
-        System.out.println(bindingResult.hasErrors());
-
         Assertions.assertNotNull(response);
         Assertions.assertEquals("auth/signin", response.getViewName());
         Assertions.assertEquals("{accountLoginForm=AccountLoginForm(email=email@email.com, password=password)}", response.getModel().toString());
+    }
+
+    @Test
+    void createAccount_NotReturnSuccess_BecausePasswordIsNotEquals() {
+        AccountRegisterForm ACCOUNT_REGISTER = AccountRegisterForm.builder()
+                .email("email@email.com")
+                .firstName("fistName")
+                .lastName("lastName")
+                .password("password")
+                .confirmPassword("asdasd")
+                .build();
+        Optional<Role> OPTIONAL_ROLE_USER = Optional.of(ROLE_USER);
+
+        Mockito.when(roleRepository.findByName(Mockito.anyString())).thenReturn(OPTIONAL_ROLE_USER);
+
+        ModelAndView response = accountRegisterService.execute(ACCOUNT_REGISTER, bindingResult);
+        Assertions.assertNotNull(response);
+        Assertions.assertEquals("/app/signup", response.getViewName());
     }
 }
