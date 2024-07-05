@@ -4,6 +4,12 @@ server.port: 8081
 spring:
   web.locale: pt_BR
 
+  #
+  # TENTANDO RESOLVER O ERRO DE 'DATA.SQL' NÃO RODAR.
+  #
+  batch.jdbc.initialize-schema: "always"
+  sql.init.mode: "always"
+
   # H2 PATH
   h2:
     console:
@@ -16,12 +22,18 @@ spring:
     password:
     driverClassName: org.h2.Driver
     initialization-mode: always  # Esta linha garante que o Spring Boot execute scripts de inicialização automaticamente
-    schema: classpath:schema-h2.sql
-    data: classpath:data-h2.sql
+    schema: classpath:schema.sql
+    data: classpath:data.sql
 
   jpa:
     # HIBERNATE CONFIGURATION YAML
     database-platform: org.hibernate.dialect.H2Dialect
+
+    #
+    # TENTANDO RESOLVER O ERRO DE 'DATA.SQL' NÃO RODAR.
+    #
+    defender-datasource-initialization: true
+
     hibernate:
       ddl-auto: create-drop
       jpa.show-sql: true

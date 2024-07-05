@@ -30,19 +30,6 @@ public class EncryptorTestFactory {
         List<Role> roles = roleRepository.findAll();
 
         passwordEncryptor(accountList);
-        makerRoles(roles);
-    }
-
-    private void makerRoles(List<Role> roles) {
-        if (roles.isEmpty()) {
-            log.info("TEST CODE :: Creating the ROLE_USER running normally.");
-
-            Role roleUser = new Role("ROLE_USER");
-            roleRepository.save(roleUser);
-        } else {
-            log.info("There is a problem in the test code or maker roles");
-
-        }
     }
 
     private void passwordEncryptor(List<Account> accountList) {
@@ -52,7 +39,7 @@ public class EncryptorTestFactory {
             List<Account> listOfEncodedAccounts = accountList.stream().map(this::encoderMap).toList();
             accountRepository.saveAll(listOfEncodedAccounts);
         } else {
-            log.info("There is a problem in the test code or password encryptor");
+            log.info("TEST CODE :: There is a problem in the test code or password encryptor");
         }
     }
 
