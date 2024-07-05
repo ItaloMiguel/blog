@@ -16,8 +16,8 @@ spring:
     password:
     driverClassName: org.h2.Driver
     initialization-mode: always  # Esta linha garante que o Spring Boot execute scripts de inicialização automaticamente
-    schema: classpath:schema.sql
-    data: classpath:data.sql
+    schema: classpath:schema-h2.sql
+    data: classpath:data-h2.sql
 
   jpa:
     # HIBERNATE CONFIGURATION YAML

@@ -64,7 +64,7 @@ public class AccountController {
     }
 
     @PostMapping("/signup")
-    public ModelAndView sendRegisterView(@ModelAttribute @Valid AccountRegisterForm accountRegisterForm, BindingResult bindingResult) {
+    public ModelAndView sendRegisterView(@ModelAttribute @Valid AccountRegisterForm accountRegisterForm, @Valid BindingResult bindingResult) {
         log.info("[POST] Receiving registration request.");
         return accountRegisterService.execute(accountRegisterForm, bindingResult);
     }

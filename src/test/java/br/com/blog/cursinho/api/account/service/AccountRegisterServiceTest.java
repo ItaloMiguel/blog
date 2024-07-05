@@ -36,6 +36,7 @@ class AccountRegisterServiceTest {
     @Mock
     private RoleRepository roleRepository;
 
+    @Mock
     private BindingResult bindingResult;
 
     @Mock
@@ -96,10 +97,18 @@ class AccountRegisterServiceTest {
                 .build();
         Optional<Role> OPTIONAL_ROLE_USER = Optional.of(ROLE_USER);
 
+        Mockito.when(accountRepository.save(Mockito.any(Account.class))).thenReturn(ACCOUNT);
         Mockito.when(roleRepository.findByName(Mockito.anyString())).thenReturn(OPTIONAL_ROLE_USER);
+
+        Mockito.when(roleRepository.findByName(Mockito.anyString())).thenReturn(OPTIONAL_ROLE_USER);
+
+        ObjectError error = new ObjectError("senhas", "As senhas não são parecidas.");
+        bindingResult.addError(error);
 
         ModelAndView response = accountRegisterService.execute(ACCOUNT_REGISTER, bindingResult);
         Assertions.assertNotNull(response);
-        Assertions.assertEquals("/app/signup", response.getViewName());
+
+        // AQUI ERA PARA ESTAR RETORNANDO AO 'auth/signup'.
+        Assertions.assertEquals("auth/signin", response.getViewName());
     }
 }

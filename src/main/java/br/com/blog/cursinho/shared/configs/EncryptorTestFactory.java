@@ -1,7 +1,9 @@
 package br.com.blog.cursinho.shared.configs;
 
 import br.com.blog.cursinho.api.account.AccountRepository;
+import br.com.blog.cursinho.api.role.RoleRepository;
 import br.com.blog.cursinho.shared.domain.Account;
+import br.com.blog.cursinho.shared.domain.Role;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,20 +17,42 @@ import java.util.List;
 @Slf4j
 @Profile("test")
 @AllArgsConstructor
+@Configuration
 public class EncryptorTestFactory {
 
     private final AccountRepository accountRepository;
+    private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
 
+    @Bean
     public void exec() {
         List<Account> accountList = accountRepository.findAll();
+        List<Role> roles = roleRepository.findAll();
+
+        passwordEncryptor(accountList);
+        makerRoles(roles);
+    }
+
+    private void makerRoles(List<Role> roles) {
+        if (roles.isEmpty()) {
+            log.info("TEST CODE :: Creating the ROLE_USER running normally.");
+
+            Role roleUser = new Role("ROLE_USER");
+            roleRepository.save(roleUser);
+        } else {
+            log.info("There is a problem in the test code or maker roles");
+
+        }
+    }
+
+    private void passwordEncryptor(List<Account> accountList) {
         if (!accountList.isEmpty()) {
-            log.info("Test code running normally.");
+            log.info("TEST CODE :: Password encryptor code running normally.");
 
             List<Account> listOfEncodedAccounts = accountList.stream().map(this::encoderMap).toList();
             accountRepository.saveAll(listOfEncodedAccounts);
         } else {
-            log.info("There is a problem in the test code.");
+            log.info("There is a problem in the test code or password encryptor");
         }
     }
 

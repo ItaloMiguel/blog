@@ -64,6 +64,8 @@ public class AccountRegisterService {
     }
 
     private ModelAndView verifyBindingResult(AccountRegisterForm accountRegisterForm, BindingResult bindingResult) {
+        log.info("Checking if password and has error");
+
         if (bindingResult.hasErrors()) {
             log.error("Validation errors: " + bindingResult.getAllErrors());
             return new ModelAndView("auth/signup")
