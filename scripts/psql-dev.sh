@@ -1,1 +1,1 @@
-docker-compose -f cursinho-dev.yaml exec db psql -U postgres -W cursinho
+docker-compose -f fisicaebits-dev.yaml exec db psql -U postgres -W fisicaebits

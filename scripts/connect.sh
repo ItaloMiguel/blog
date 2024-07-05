@@ -1,1 +1,1 @@
-docker-compose exec db psql cursinho -p
+docker-compose exec db psql fisicaebits -p

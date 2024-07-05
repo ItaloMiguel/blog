@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.blog</groupId>
-	<artifactId>cursinho</artifactId>
+	<artifactId>fisicaebits</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>cursinho</name>
+	<name>fisicaebits</name>
 	<description>Nada a dizer.</description>
 	<properties>
 		<java.version>17</java.version>

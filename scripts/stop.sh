@@ -1,1 +1,1 @@
-docker-compose -f cursinho-dev.yaml down
+docker-compose -f fisicaebits-dev.yaml down
