@@ -103,7 +103,7 @@
     </dependencies>
 
 	<build>
-		<finalName>cursinho</finalName>
+		<finalName>fisicaebits</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

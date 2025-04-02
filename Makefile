@@ -7,7 +7,7 @@ start-test:
 	@bash scripts/start_test.sh
 
 start-prod:
-	@echo "In production... ;)"
+	@echo "In production... ;"
 
 psql-dev:
 	@bash scripts/psql-dev.sh
@@ -26,6 +26,9 @@ chmod:
 	@chmod u+x scripts/*.sh
 	@chmod u+x target/**
 
+drop_docker:
+	@bash docker stop $(docker ps -q)
+
 help:
 	@echo ""
 	@echo "Usage: make [COMMAND]"
@@ -38,4 +41,4 @@ help:
 	@echo " psql-dev	Connect to postgres. Password: root"
 	@echo "	build 		Build all dockerfile (nginx, spring-boot)... Don't working, sorry."
 	@echo ""
-	@echo "Thanks for running the project, I appreciate it, hope to see you again :)"
+	@echo "Thanks for running the project, I appreciate it, hope to see you again :"
