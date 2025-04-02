@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.blog</groupId>
-	<artifactId>fisicaebits</artifactId>
+	<artifactId>site</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>fisicaebits</name>
+	<name>site</name>
 	<description>Nada a dizer, por enquanto</description>
 	<properties>
 		<java.version>17</java.version>
@@ -69,12 +69,6 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!--	Necessário para reconhcer os arquivos .sql	-->
-		<dependency>
-			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-core</artifactId>
-		</dependency>
-
 		<!--	Dependências para Testes	-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -103,7 +97,7 @@
     </dependencies>
 
 	<build>
-		<finalName>fisicaebits</finalName>
+		<finalName>site</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

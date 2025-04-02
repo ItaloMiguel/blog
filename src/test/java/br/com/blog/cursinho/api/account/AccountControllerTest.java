@@ -1,10 +1,5 @@
 package br.com.blog.cursinho.api.account;
 
-import br.com.blog.cursinho.CursinhoApplication;
-import br.com.blog.cursinho.api.account.service.AccountRegisterService;
-import br.com.blog.cursinho.shared.domain.Account;
-import br.com.blog.cursinho.shared.domain.Role;
-import br.com.blog.cursinho.shared.security.WebSecurityConfiguration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +13,13 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 
+import br.com.blog.site.SiteApplication;
+import br.com.blog.site.api.account.AccountRegisterForm;
+import br.com.blog.site.api.account.service.AccountRegisterService;
+import br.com.blog.site.shared.domain.Account;
+import br.com.blog.site.shared.domain.Role;
+import br.com.blog.site.shared.security.WebSecurityConfiguration;
+
 import java.math.BigInteger;
 import java.util.Set;
 
@@ -27,7 +29,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@SpringBootTest(classes = CursinhoApplication.class)
+@SpringBootTest(classes = SiteApplication.class)
 @AutoConfigureMockMvc
 @Import(WebSecurityConfiguration.class)
 class AccountControllerTest {

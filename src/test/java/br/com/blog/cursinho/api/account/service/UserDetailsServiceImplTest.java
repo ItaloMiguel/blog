@@ -1,8 +1,5 @@
 package br.com.blog.cursinho.api.account.service;
 
-import br.com.blog.cursinho.api.account.AccountRepository;
-import br.com.blog.cursinho.shared.domain.Account;
-import br.com.blog.cursinho.shared.domain.Role;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,6 +8,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import br.com.blog.site.api.account.AccountRepository;
+import br.com.blog.site.api.account.service.UserDetailsServiceImpl;
+import br.com.blog.site.shared.domain.Account;
+import br.com.blog.site.shared.domain.Role;
 
 import java.math.BigInteger;
 import java.util.Optional;

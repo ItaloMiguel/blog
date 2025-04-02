@@ -1,10 +1,5 @@
 package br.com.blog.cursinho.api.account.service;
 
-import br.com.blog.cursinho.api.account.AccountRegisterForm;
-import br.com.blog.cursinho.api.account.AccountRepository;
-import br.com.blog.cursinho.api.role.RoleRepository;
-import br.com.blog.cursinho.shared.domain.Account;
-import br.com.blog.cursinho.shared.domain.Role;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,6 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.servlet.ModelAndView;
+
+import br.com.blog.site.api.account.AccountRegisterForm;
+import br.com.blog.site.api.account.AccountRepository;
+import br.com.blog.site.api.account.service.AccountLoginService;
+import br.com.blog.site.api.account.service.AccountRegisterService;
+import br.com.blog.site.api.role.RoleRepository;
+import br.com.blog.site.shared.domain.Account;
+import br.com.blog.site.shared.domain.Role;
 
 import java.math.BigInteger;
 import java.util.Optional;

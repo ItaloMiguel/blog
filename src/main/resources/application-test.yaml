@@ -2,6 +2,10 @@ server.port: 8081
 
 # SETUP H2 CONFIGURATION
 spring:
+  # sql.init:
+  #   schemaLocations: schema.sql
+  #   dataLocations: data.sql
+
   web.locale: pt_BR
 
   #
@@ -9,11 +13,10 @@ spring:
   #
   batch.jdbc.initialize-schema: "always"
   sql.init.mode: "always"
-
+  
   # H2 PATH
   h2:
-    console:
-      enabled: true
+    console.enabled: true
       
   # DATASOURCE CONNECTION PROPERTIES
   datasource:
@@ -36,7 +39,5 @@ spring:
 
     hibernate:
       ddl-auto: create-drop
-      jpa.show-sql: true
-      format_sql: true
       default_schema: dbo
 
