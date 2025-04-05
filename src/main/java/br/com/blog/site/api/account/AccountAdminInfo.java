@@ -3,9 +3,6 @@ package br.com.blog.site.api.account;
 import org.springframework.stereotype.Component;
 import lombok.*;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-
 @Getter
 @Setter
 @NoArgsConstructor

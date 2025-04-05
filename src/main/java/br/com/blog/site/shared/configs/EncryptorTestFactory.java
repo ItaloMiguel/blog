@@ -1,6 +1,5 @@
 package br.com.blog.site.shared.configs;
 
-import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -28,6 +27,7 @@ public class EncryptorTestFactory {
     @Bean
     public void exec() {
         List<Account> accountList = accountRepository.findAll();
+        @SuppressWarnings("unused")
         List<Role> roles = roleRepository.findAll();
 
         passwordEncryptor(accountList);

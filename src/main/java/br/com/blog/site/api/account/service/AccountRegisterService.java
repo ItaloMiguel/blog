@@ -23,11 +23,14 @@ import java.util.List;
 @AllArgsConstructor
 public class AccountRegisterService {
 
+    @SuppressWarnings("unused")
     private final List<String> errorMessages = new ArrayList<>();
+    @SuppressWarnings("unused")
     private final List<String> successMessages = new ArrayList<>();
 
     private final AccountRepository accountRepository;
     private final RoleRepository roleRepository;
+    @SuppressWarnings("unused")
     private final AccountLoginService accountLoginService;
 
 

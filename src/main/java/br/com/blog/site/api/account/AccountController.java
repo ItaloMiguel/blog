@@ -1,13 +1,11 @@
 package br.com.blog.site.api.account;
 
 import jakarta.validation.Valid;
-import jakarta.validation.executable.ValidateOnExecution;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.blog.site.api.account.service.AccountGetUsers;
 import br.com.blog.site.api.account.service.AccountLoginService;
 import br.com.blog.site.api.account.service.AccountRegisterService;
-import br.com.blog.site.api.account.service.UserDetailsServiceImpl;
 
 @Controller
 @RequestMapping("/app")
@@ -29,7 +26,6 @@ public class AccountController {
 
     private final AccountRegisterService accountRegisterService;
     private final AccountLoginService accountLoginService;
-    private final UserDetailsServiceImpl userDetailsService;
     private final AccountGetUsers accountGetUsers;
 
     @GetMapping("/signin")

@@ -1,8 +1,6 @@
 package br.com.blog.site.api.account;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import br.com.blog.site.api.role.RoleRepository;
 import br.com.blog.site.shared.domain.Account;
