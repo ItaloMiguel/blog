@@ -28,6 +28,7 @@
       <div class="dropdown" sec:authorize="isAuthenticated()">
           <button class="dropbtn" id="dropbtn-isAuthenticated">Explore</button>
           <div class="dropdown-content" id="dropdown-content-isAuthenticated">
+              <a th:href="@{/app/new_post}">New Post</a>
               <a th:href="@{/app/logout}">Logout</a>
           </div>
 

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Física & Bytes</title>
+
+    <link rel="stylesheet" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/css/header/black.css}">
+    <link rel="stylesheet" th:href="@{/css/header/white.css}">
+    <link rel="stylesheet" th:href="@{/css/header/header.css}">
+    <link rel="stylesheet" th:href="@{/css/carousel/carousel.css}">
+
+    <!-- POST BIBLIOTECA -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
+</head>
+<body>
+<header th:replace="~{_header_search :: header_search}"></header>
+<div th:replace="~{_presentation_banner :: presentation_banner}"></div>
+
+<div class="admin" sec:authorize="!isAuthenticated()">
+    <p>Olá random!</p>
+</div>
+<div class="user" sec:authorize="isAuthenticated()">
+    <p>Olá usuário!</p>
+</div>
+
+<div class="form-container">
+    <!-- POST IN FORM -->
+    <form th:method="POST" th:object="${postForm}" th:action="@{/app/new_post}">
+      <h2 class="title">Entrar</h2>
+      <div class="input-field">
+        <i class="fas fa-user"></i>
+        <input id="title" name="title" type="text" th:field="*{title}" placeholder="Title" />
+      </div>
+      <div class="input-field">
+        <i class="fas fa-lock"></i>
+        <input id="text_post" name="text_post" type="" th:field="*{text_post}" placeholder="Texto" />
+      </div>
+      <input type="submit" value="Postar" class="btn solid" />
+      <p class="social-text">Ou entrar com sua rede-social (Não funciona.)</p>
+    </form>
+  </div>
+
+  <div id="summernote"><p>Hello Summernote</p></div>
+  <script>
+    $(document).ready(function() {
+        $('#summernote').summernote();
+    });
+  </script>
+
+</body>
+</html>

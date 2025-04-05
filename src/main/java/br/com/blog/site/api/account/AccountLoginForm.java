@@ -5,14 +5,10 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
-@Builder
 public class AccountLoginForm {
     private String email;
     private String password;
-
-    public AccountLoginForm(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
+    
 }
