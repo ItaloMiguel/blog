@@ -1,0 +1,18 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar repositório
+        uses: actions/checkout@v3
+
+      - name: Tornar script executável
+        run: chmod +x ./scripts/deploy.sh
+
+      - name: Executar script de deploy
+        run: ./scripts/deploy.sh
