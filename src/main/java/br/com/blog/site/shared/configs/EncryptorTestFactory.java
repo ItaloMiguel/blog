@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import br.com.blog.site.api.account.AccountRepository;
 import br.com.blog.site.api.role.RoleRepository;
 import br.com.blog.site.shared.configs.password.DefaultPasswordSetter;
+import br.com.blog.site.shared.configs.password.TestPasswordSetter;
 import br.com.blog.site.shared.domain.Account;
 import br.com.blog.site.shared.domain.Role;
 
@@ -25,7 +26,7 @@ public class EncryptorTestFactory {
     private final AccountRepository accountRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
-    private final DefaultPasswordSetter defaultPasswordSetter;
+    private final TestPasswordSetter testPasswordSetter;
 
     @Bean
     public void exec() {
@@ -49,6 +50,6 @@ public class EncryptorTestFactory {
 
     private Account encoderMap(Account account) {
         String encodedPassword = passwordEncoder.encode(account.getPassword());
-        return defaultPasswordSetter.setPassword(account, encodedPassword);
+        return testPasswordSetter.setPassword(account, encodedPassword);
     }
 }

@@ -14,10 +14,10 @@ import lombok.Builder;
 @AllArgsConstructor
 public class DefaultPasswordSetter implements PasswordSetter {
 
-    private final PasswordEncoder encoder;
+    private final PasswordEncoder passwordEncoder;
 
     public Account setPassword(Account account, String password) {
-        account.setPassword(encoder.encode(password));
+        account.setPassword(passwordEncoder.encode(password));
         return account;
     }
     

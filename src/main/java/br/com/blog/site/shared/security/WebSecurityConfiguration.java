@@ -26,6 +26,7 @@ public class WebSecurityConfiguration {
             "/app/home",
             "/",
             "/h2-console/**",
+            "/app/**"
     };
 
     private static final String[] ADMIN_PAGES = {
