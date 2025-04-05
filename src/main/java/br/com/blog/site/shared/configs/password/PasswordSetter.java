@@ -1,4 +1,4 @@
-package br.com.blog.site.shared.configs;
+package br.com.blog.site.shared.configs.password;
 
 import br.com.blog.site.shared.domain.Account;
 

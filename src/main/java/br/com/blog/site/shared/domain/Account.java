@@ -104,13 +104,4 @@ public class Account implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
-    /**
-     * Esse nome é meio grande para deixar claro o que faz.
-     * Ele é utilizada no EncryptorFactory, umas classe que é usada em profile de teste
-     **/
-    public Account setPasswordEncodedAndReturnClassAccount(String password) {
-        this.password = password;
-        return this;
-    }
 }

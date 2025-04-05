@@ -1,13 +1,9 @@
 package br.com.blog.site.api.admin;
 
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import br.com.blog.site.shared.domain.Account;
-import br.com.blog.site.shared.domain.UserAuthenticate;
 
 import java.security.Principal;
 
